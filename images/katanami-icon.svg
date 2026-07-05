@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <!-- 片泪 katanami ロゴ ― 一粒の泪を湛えた目 -->
+  <g fill="none" stroke="#1b1b1b" stroke-width="19" stroke-linecap="round" stroke-linejoin="round">
+    <!-- 眉 -->
+    <path d="M150 176 Q262 120 380 168"/>
+    <!-- 上まぶた（外側へ流れる筆致） -->
+    <path d="M116 300 Q250 196 408 258 Q372 300 344 320"/>
+    <!-- 目の輪郭（下まぶた〜目尻） -->
+    <path d="M150 322 Q214 392 300 384 Q356 378 392 322"/>
+    <!-- 虹彩 -->
+    <circle cx="256" cy="316" r="70" fill="#ffffff"/>
+  </g>
+  <!-- 瞳 -->
+  <circle cx="256" cy="316" r="25" fill="#111111"/>
+  <!-- 泪 -->
+  <path d="M256 388 C262 415 300 452 300 486 A44 44 0 1 1 212 486 C212 452 250 415 256 388 Z"
+        fill="#b9e6f8"/>
+</svg>

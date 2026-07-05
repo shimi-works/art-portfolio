@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>片泪 katanami ― 作品集</title>
+<link rel="icon" type="image/svg+xml" href="images/katanami-icon.svg">
+<style>
+/* =========================================================================
+   絵のポートフォリオ ― 「和・土壁の空間」
+   単一HTMLで完結。あとから画像を差し替えて使えます。
+   ▼ 画像の入れ方 … 各作品の <figure> 内 .art の style を
+      background-image: url('images/xxx.jpg'); に書き換えるだけ。
+   ▼ 文言（作家名・題名・技法など）は下の [ ] を書き換えてください。
+   ========================================================================= */
+
+:root{
+  --tsuchi:      #c6b795;   /* 土壁のベース（少し深く） */
+  --tsuchi-dark: #ab9a76;   /* 土壁の陰 */
+  --washi:       #f1e9d6;   /* 和紙（マット） */
+  --washi-warm:  #f7f0df;
+  --sumi:        #221e18;   /* 墨（濃く・可読性） */
+  --sumi-soft:   #4a4237;   /* うす墨 */
+  --bengara:     #a4442f;   /* 弁柄（差し色・鮮やかに） */
+  --shu:         #b8402c;   /* 朱（落款印） */
+  --wood:        #43382c;   /* 木の額 */
+  --line:        rgba(34,30,24,.2);
+  --serif: "Yu Mincho", "游明朝", "YuMincho", "Hiragino Mincho ProN",
+           "Hiragino Mincho Pro", "HGS明朝E", "MS PMincho", serif;
+}
+
+*{ box-sizing:border-box; margin:0; padding:0; }
+
+html{ scroll-behavior:smooth; }
+
+body{
+  font-family:var(--serif);
+  color:var(--sumi);
+  background-color:var(--tsuchi);
+  /* 土壁のムラ + 和紙の粒子感（すべてCSSで生成・外部依存なし） */
+  background-image:
+    radial-gradient(115% 75% at 18% -5%,  rgba(255,251,236,.5),  transparent 52%),
+    radial-gradient(120% 90% at 100% 30%, rgba(110,90,60,.28),   transparent 60%),
+    radial-gradient(95%  75% at 50% 125%, rgba(74,60,40,.38),    transparent 60%),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.06'/%3E%3C/svg%3E");
+  line-height:1.9;
+  letter-spacing:.02em;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+
+/* ------------------------------------------------------------------ header */
+header{
+  position:fixed; inset:0 0 auto 0; z-index:50;
+  display:flex; align-items:center; justify-content:space-between;
+  padding:18px clamp(20px,5vw,64px);
+  background:linear-gradient(to bottom, rgba(202,191,166,.92), rgba(202,191,166,0));
+  backdrop-filter:blur(2px);
+}
+.brand{
+  display:flex; align-items:center; gap:11px;
+  font-size:16px; letter-spacing:.28em;
+  color:var(--sumi); font-weight:600;
+}
+.brand-mark{ width:30px; height:30px; flex:none; }
+.brand .en{
+  font-size:10px; letter-spacing:.3em; color:var(--sumi-soft);
+  font-weight:400; text-transform:lowercase;
+}
+nav{ display:flex; gap:clamp(16px,3vw,38px); }
+nav a{
+  color:var(--sumi-soft); text-decoration:none; font-size:14px;
+  letter-spacing:.35em; padding-bottom:4px; position:relative;
+  transition:color .4s ease;
+}
+nav a::after{
+  content:""; position:absolute; left:0; bottom:0; height:1px; width:0;
+  background:var(--bengara); transition:width .5s ease;
+}
+nav a:hover{ color:var(--sumi); }
+nav a:hover::after{ width:100%; }
+
+/* -------------------------------------------------------------------- hero */
+.hero{
+  min-height:100vh;
+  display:flex; align-items:center; justify-content:center;
+  position:relative; padding:120px 24px 80px;
+}
+.hero-inner{
+  display:flex; align-items:center; gap:clamp(34px,7vw,96px);
+}
+.hero-title-col{
+  display:flex; align-items:flex-start; gap:18px;
+}
+.hero-title{
+  writing-mode:vertical-rl;
+  font-size:clamp(46px,8.5vw,92px);
+  letter-spacing:.18em;
+  line-height:1.35;
+  font-weight:500;
+  text-shadow:0 1px 0 rgba(255,251,236,.45);
+}
+/* 落款印（朱の角印）― 静けさの中の一点の生気 */
+.seal{
+  writing-mode:vertical-rl;
+  align-self:flex-end; margin-bottom:.4em;
+  font-size:clamp(13px,1.6vw,16px); letter-spacing:.25em; line-height:1.15;
+  color:#fbeee2; background:var(--shu);
+  padding:10px 7px; border-radius:3px;
+  box-shadow:0 6px 16px -8px rgba(120,30,20,.6);
+  transform:rotate(-2deg);
+}
+.hero-meta{ max-width:23em; }
+.hero-meta .en{
+  font-size:12px; letter-spacing:.38em; color:var(--bengara);
+  text-transform:uppercase; margin-bottom:22px; font-weight:600;
+}
+.hero-meta .en::before{
+  content:""; display:inline-block; width:26px; height:1px;
+  background:var(--bengara); vertical-align:middle; margin-right:12px;
+}
+.hero-meta p{ color:var(--sumi-soft); font-size:16px; line-height:2; }
+.hero-rule{
+  width:56px; height:1px; background:var(--line); margin:26px 0;
+}
+.scroll-cue{
+  position:absolute; bottom:34px; left:50%; transform:translateX(-50%);
+  font-size:11px; letter-spacing:.4em; color:var(--sumi-soft);
+  writing-mode:vertical-rl; opacity:.7;
+}
+.scroll-cue::after{
+  content:""; display:block; width:1px; height:44px; margin:12px auto 0;
+  background:linear-gradient(var(--sumi-soft), transparent);
+  animation:drip 2.6s ease-in-out infinite;
+}
+@keyframes drip{ 0%,100%{ transform:scaleY(.4); opacity:.3; } 50%{ transform:scaleY(1); opacity:.8; } }
+
+/* ---------------------------------------------------------------- sections */
+section{ position:relative; }
+.wrap{ max-width:1120px; margin:0 auto; padding:0 clamp(20px,5vw,48px); }
+
+.section-head{
+  text-align:center; margin:0 auto clamp(46px,7vw,80px);
+}
+.section-head .kanji{
+  position:relative; display:inline-block;
+  font-size:clamp(27px,4vw,36px); letter-spacing:.35em; padding-left:.35em;
+}
+/* 見出しの脇に朱の点 ― 一輪の生気 */
+.section-head .kanji::before{
+  content:""; position:absolute; left:-22px; top:50%;
+  width:8px; height:8px; border-radius:50%;
+  background:var(--shu); transform:translateY(-50%);
+  box-shadow:0 0 0 4px rgba(184,64,44,.14);
+}
+.section-head .en{
+  display:block; margin-top:12px;
+  font-size:11px; letter-spacing:.42em; color:var(--bengara);
+  text-transform:uppercase; font-weight:600;
+}
+.section-head::after{
+  content:""; display:block; width:44px; height:1px; margin:22px auto 0;
+  background:linear-gradient(90deg, transparent, var(--bengara), transparent);
+}
+
+/* ジャンル×画材の切替（フィルター） */
+.filters{
+  display:flex; flex-direction:column; align-items:center;
+  gap:16px; margin:0 auto clamp(44px,6vw,64px);
+}
+.filter-group{
+  display:flex; align-items:center; justify-content:center;
+  flex-wrap:wrap; gap:6px 10px;
+}
+.filter-label{
+  font-size:10.5px; letter-spacing:.3em; color:var(--bengara);
+  padding:3px 12px 3px 0; margin-right:4px;
+  border-right:1px solid var(--line); white-space:nowrap;
+}
+.filter-row{ display:flex; flex-wrap:wrap; justify-content:center; gap:2px; }
+.filter-tab{
+  background:none; border:none; cursor:pointer; font-family:var(--serif);
+  color:var(--sumi-soft); padding:8px clamp(16px,3vw,26px);
+  position:relative; transition:color .4s ease; line-height:1.4;
+}
+.filter-tab + .filter-tab::before{
+  content:""; position:absolute; left:0; top:50%; transform:translateY(-50%);
+  width:1px; height:22px; background:var(--line);
+}
+.filter-tab .ja{ display:block; font-size:15.5px; letter-spacing:.22em; }
+.filter-tab .en{
+  display:block; margin-top:5px; font-size:9px; letter-spacing:.3em;
+  color:var(--tsuchi-dark); text-transform:uppercase;
+}
+.filter-tab::after{
+  content:""; position:absolute; left:50%; bottom:-2px; width:0; height:2px;
+  background:var(--shu); transform:translateX(-50%); transition:width .45s ease;
+}
+.filter-tab:hover{ color:var(--sumi); }
+.filter-tab.active{ color:var(--sumi); }
+.filter-tab.active .en{ color:var(--bengara); }
+.filter-tab.active::after{ width:26px; }
+
+.empty-note{
+  display:none; text-align:center; color:var(--sumi-soft);
+  font-size:15px; letter-spacing:.12em; padding:40px 0 10px;
+}
+.empty-note.show{ display:block; }
+
+/* 展示（作品ギャラリー） */
+.gallery{ padding:clamp(70px,10vw,130px) 0; }
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill, minmax(280px,1fr));
+  gap:clamp(40px,6vw,72px) clamp(28px,4vw,48px);
+}
+figure.piece{
+  position:relative; margin:0; cursor:pointer;
+  display:flex; flex-direction:column; align-items:center;
+  opacity:0; transform:translateY(26px);
+  transition:opacity 1s ease, transform 1s ease;
+}
+figure.piece.in{ opacity:1; transform:none; }
+/* 上から差す展示照明のあかり */
+figure.piece::before{
+  content:""; position:absolute; top:-6%; left:50%; transform:translateX(-50%);
+  width:120%; height:70%; z-index:-1; pointer-events:none;
+  background:radial-gradient(60% 55% at 50% 0%, rgba(255,247,228,.55), transparent 70%);
+  opacity:.5; transition:opacity .6s ease;
+}
+figure.piece:hover::before{ opacity:1; }
+
+/* 額装：木の額 → 和紙のマット → 作品 */
+.frame{
+  padding:14px;
+  background:
+    linear-gradient(145deg, #5a4b3a, #362b20 55%, #4a3c2d);
+  border-radius:2px;
+  box-shadow:
+    0 2px 0 rgba(255,250,235,.15) inset,
+    0 26px 44px -26px rgba(40,30,18,.75),
+    0 8px 18px -14px rgba(40,30,18,.6);
+  transition:transform .6s cubic-bezier(.2,.7,.2,1), box-shadow .6s;
+  max-width:100%;
+}
+figure.piece:hover .frame{
+  transform:translateY(-6px);
+  box-shadow:
+    0 2px 0 rgba(255,250,235,.15) inset,
+    0 40px 60px -28px rgba(40,30,18,.8),
+    0 10px 22px -14px rgba(40,30,18,.65);
+}
+.mat{
+  padding:clamp(18px,3vw,30px);
+  background:
+    radial-gradient(120% 120% at 30% 20%, var(--washi-warm), var(--washi));
+  box-shadow:0 0 0 1px rgba(0,0,0,.06) inset;
+}
+.art{
+  aspect-ratio:4/5;
+  background-color:#d9cfba;
+  /* ▼ 画像を入れるときはここを background-image に差し替え
+     background-image:url('images/sakuhin-01.jpg');
+     background-size:cover; background-position:center;               */
+  background-image:
+    linear-gradient(135deg, rgba(255,255,255,.25), transparent 40%),
+    repeating-linear-gradient(45deg, rgba(90,76,54,.05) 0 6px, transparent 6px 12px);
+  display:flex; align-items:center; justify-content:center;
+  color:var(--sumi-soft);
+  position:relative; overflow:hidden;
+}
+.art .ph{
+  font-size:12px; letter-spacing:.4em; opacity:.55;
+  border:1px solid var(--line); padding:8px 14px; border-radius:2px;
+}
+/* 縦横比のバリエーション（掛け軸風／横長など） */
+figure.piece.tall  .art{ aspect-ratio:3/5; }
+figure.piece.wide  .art{ aspect-ratio:5/4; }
+
+/* 美術館の解説板（キャプション） */
+.placard{
+  margin-top:20px; text-align:center; max-width:24em;
+}
+.placard .t{ font-size:16.5px; letter-spacing:.08em; }
+.placard .sub{
+  margin-top:6px; font-size:12.5px; color:var(--sumi-soft); letter-spacing:.12em;
+}
+.placard .cat{
+  display:inline-block; margin-bottom:10px;
+  font-size:11px; letter-spacing:.22em; color:var(--bengara);
+  padding:3px 12px; border:1px solid rgba(164,68,47,.4); border-radius:2px;
+  background:rgba(164,68,47,.06);
+}
+
+/* ---------------------------------------------------------------- profile */
+.profile{
+  padding:clamp(80px,11vw,150px) 0;
+  background:
+    linear-gradient(rgba(239,232,214,.55), rgba(239,232,214,.55));
+  border-top:1px solid var(--line);
+  border-bottom:1px solid var(--line);
+}
+.profile-grid{
+  display:grid; grid-template-columns:auto 1fr; gap:clamp(30px,6vw,72px);
+  align-items:center; max-width:900px; margin:0 auto;
+}
+.portrait{
+  width:clamp(150px,20vw,210px); aspect-ratio:3/4;
+  background:var(--washi);
+  border:10px solid #fff;
+  box-shadow:0 20px 40px -26px rgba(40,30,18,.7);
+  display:flex; flex-direction:column; align-items:center; justify-content:center; gap:14px;
+  color:var(--sumi-soft); font-size:11px; letter-spacing:.35em; text-align:center;
+  /* ▼ 顔写真を入れるとき：background:url('images/me.jpg') center/cover; */
+}
+.portrait-mark{ width:60px; height:60px; opacity:.32; }
+.profile-text .name{
+  font-size:clamp(22px,3vw,28px); letter-spacing:.18em; margin-bottom:4px;
+}
+.profile-text .en{
+  font-size:11px; letter-spacing:.4em; color:var(--bengara);
+  text-transform:uppercase; margin-bottom:24px;
+}
+.profile-text p{ color:var(--sumi-soft); font-size:15.5px; margin-bottom:16px; max-width:34em; }
+.profile-text dl{ margin-top:26px; font-size:14px; }
+.profile-text dl div{ display:flex; gap:18px; padding:7px 0; border-top:1px solid var(--line); }
+.profile-text dt{ width:5em; color:var(--bengara); letter-spacing:.2em; flex:none; }
+.profile-text dd{ color:var(--sumi-soft); }
+
+/* ---------------------------------------------------------------- contact */
+.contact{ padding:clamp(80px,11vw,140px) 0 40px; text-align:center; }
+.contact .lead{
+  margin:0 auto 12px;
+  font-size:clamp(21px,3.4vw,29px); letter-spacing:.14em; line-height:1.7;
+}
+.contact .lead-sub{
+  color:var(--sumi-soft); font-size:14px; letter-spacing:.14em; margin-bottom:44px;
+}
+.contact-links{
+  display:flex; gap:22px; justify-content:center; flex-wrap:wrap;
+  max-width:560px; margin:0 auto;
+}
+.contact-links a{
+  display:flex; align-items:center; gap:14px; text-decoration:none;
+  min-width:230px; padding:18px 24px; text-align:left;
+  background:rgba(247,240,223,.55);
+  border:1px solid var(--line); border-radius:3px;
+  transition:transform .4s ease, box-shadow .4s ease, border-color .4s;
+}
+.contact-links a:hover{
+  transform:translateY(-3px);
+  border-color:var(--bengara);
+  box-shadow:0 16px 30px -20px rgba(60,40,20,.6);
+}
+.contact-links .ic{
+  width:40px; height:40px; flex:none; border-radius:50%;
+  display:flex; align-items:center; justify-content:center;
+  font-size:17px; font-weight:700; color:#fbeee2;
+  font-family:Arial, sans-serif; letter-spacing:0;
+}
+.contact-links .ic.gmail{ background:linear-gradient(135deg,#c25b46,#a4442f); }
+.contact-links .ic.x{ background:linear-gradient(135deg,#3a352d,#221e18); }
+.contact-links .meta{ display:flex; flex-direction:column; }
+.contact-links .meta .lbl{
+  font-size:10.5px; letter-spacing:.35em; color:var(--bengara); text-transform:uppercase;
+}
+.contact-links .meta .val{
+  font-size:15px; letter-spacing:.06em; color:var(--sumi); margin-top:3px;
+}
+
+footer{
+  margin-top:70px; padding:26px; text-align:center;
+  font-size:11px; letter-spacing:.3em; color:var(--sumi-soft);
+  border-top:1px solid var(--line);
+}
+
+/* -------------------------------------------------------------- lightbox */
+.lightbox{
+  position:fixed; inset:0; z-index:100;
+  background:rgba(28,24,18,.86);
+  backdrop-filter:blur(4px);
+  display:flex; align-items:center; justify-content:center;
+  padding:5vw; opacity:0; pointer-events:none;
+  transition:opacity .5s ease;
+}
+.lightbox.open{ opacity:1; pointer-events:auto; }
+.lb-inner{
+  display:flex; flex-direction:column; align-items:center; gap:22px;
+  max-width:min(720px,90vw); transform:scale(.96); transition:transform .5s ease;
+}
+.lightbox.open .lb-inner{ transform:none; }
+.lb-frame{
+  padding:16px; background:linear-gradient(145deg,#5a4b3a,#362b20 55%,#4a3c2d);
+  box-shadow:0 40px 80px -30px rgba(0,0,0,.8);
+}
+.lb-mat{ padding:clamp(22px,4vw,40px); background:var(--washi); }
+.lb-art{
+  width:min(60vh,520px); aspect-ratio:4/5; background:#d9cfba;
+  background-image:
+    linear-gradient(135deg, rgba(255,255,255,.25), transparent 40%),
+    repeating-linear-gradient(45deg, rgba(90,76,54,.05) 0 6px, transparent 6px 12px);
+  background-size:cover; background-position:center;
+}
+.lb-cap{ text-align:center; color:var(--washi); }
+.lb-cat{
+  display:inline-block; margin-bottom:12px;
+  font-size:11px; letter-spacing:.24em; color:#f0c9bd;
+  padding:3px 13px; border:1px solid rgba(240,201,189,.4); border-radius:2px;
+}
+.lb-cap .t{ font-size:19px; letter-spacing:.1em; }
+.lb-cap .sub{ margin-top:8px; font-size:13px; color:#c9beac; letter-spacing:.14em; }
+.lb-cap .desc{ margin-top:14px; font-size:13.5px; color:#d8cebc; max-width:30em; line-height:1.9; }
+.lb-close{
+  position:fixed; top:26px; right:30px; z-index:101;
+  background:none; border:none; color:var(--washi); cursor:pointer;
+  font-size:26px; font-family:var(--serif); line-height:1; opacity:.75;
+  transition:opacity .3s, transform .3s;
+}
+.lb-close:hover{ opacity:1; transform:rotate(90deg); }
+
+/* ------------------------------------------------------------- responsive */
+@media (max-width:640px){
+  nav{ gap:16px; }
+  nav a{ font-size:12px; letter-spacing:.2em; }
+  .brand{ letter-spacing:.3em; font-size:13px; }
+  .hero-inner{ flex-direction:column-reverse; gap:34px; text-align:center; }
+  .hero-meta{ text-align:center; }
+  .hero-rule{ margin:22px auto; }
+  .profile-grid{ grid-template-columns:1fr; text-align:center; justify-items:center; }
+  .profile-text p, .profile-text dl{ text-align:left; }
+  .profile-text dt{ width:4.5em; }
+}
+@media (prefers-reduced-motion:reduce){
+  *{ animation:none !important; transition:none !important; }
+  figure.piece{ opacity:1; transform:none; }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="brand">
+    <img class="brand-mark" src="images/katanami-icon.svg" alt="片泪 ロゴ">
+    片泪<span class="en">katanami</span>
+  </div>
+  <nav>
+    <a href="#gallery">展示</a>
+    <a href="#profile">栞</a>
+    <a href="#contact">連絡</a>
+  </nav>
+</header>
+
+<!-- ============================================================ 表紙 / hero -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-title-col">
+      <h1 class="hero-title">静けさを、描く</h1>
+      <span class="seal">作品集</span>
+    </div>
+    <div class="hero-meta">
+      <div class="en">Selected Works</div>
+      <p>ひとつひとつの絵が、静かに佇む部屋。<br>
+         土壁のそばを歩くように、どうぞごゆっくり。</p>
+      <div class="hero-rule"></div>
+      <p style="font-size:14px;" id="cfgHeroLead"></p>
+    </div>
+  </div>
+  <div class="scroll-cue">SCROLL</div>
+</section>
+
+<!-- ========================================================= 展示 / gallery -->
+<section class="gallery" id="gallery">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="kanji">展示室</span>
+      <span class="en">Gallery</span>
+    </div>
+
+    <!-- ジャンル×画材で絞り込み。ジャンルと画材は組み合わせて効きます。 -->
+    <div class="filters" id="filters">
+      <div class="filter-group" data-group="cat">
+        <span class="filter-label">ジャンル</span>
+        <div class="filter-row">
+          <button class="filter-tab active" data-filter="all">
+            <span class="ja">すべて</span><span class="en">All</span></button>
+          <button class="filter-tab" data-filter="portrait">
+            <span class="ja">人物画</span><span class="en">Portrait</span></button>
+          <button class="filter-tab" data-filter="landscape">
+            <span class="ja">風景画</span><span class="en">Landscape</span></button>
+          <button class="filter-tab" data-filter="design">
+            <span class="ja">デザイン</span><span class="en">Design</span></button>
+        </div>
+      </div>
+      <div class="filter-group" data-group="med">
+        <span class="filter-label">画材</span>
+        <div class="filter-row">
+          <button class="filter-tab active" data-filter="all">
+            <span class="ja">すべて</span><span class="en">All</span></button>
+          <button class="filter-tab" data-filter="procreate">
+            <span class="ja">Procreate</span><span class="en">Digital</span></button>
+          <button class="filter-tab" data-filter="pencil">
+            <span class="ja">鉛筆</span><span class="en">Pencil</span></button>
+          <button class="filter-tab" data-filter="charcoal">
+            <span class="ja">木炭</span><span class="en">Charcoal</span></button>
+        </div>
+      </div>
+    </div>
+
+    <p class="empty-note" id="emptyNote">この組み合わせの作品は、まだありません。</p>
+
+    <div class="grid" id="grid">
+      <!-- ▼ 作品を増やすときは <figure> をコピー。
+           data-cat … portrait(人物画) / landscape(風景画) / design(デザイン)
+           data-catja … 札に出す日本語のジャンル名
+           data-med … procreate / pencil / charcoal（画材フィルター用）
+           data-* の内容がクリック時の拡大表示にも反映されます。          -->
+      <figure class="piece"
+        data-cat="portrait" data-catja="人物画" data-med="procreate"
+        data-title="面影" data-sub="人物画　／　Procreate　／　2024"
+        data-desc="［作品の解説やエピソードをここに。モチーフに込めた想いなど。］">
+        <div class="frame"><div class="mat"><div class="art"><span class="ph">作品 一</span></div></div></div>
+        <figcaption class="placard">
+          <span class="cat">人物画</span>
+          <div class="t">面影</div>
+          <div class="sub">Procreate　／　2024</div>
+        </figcaption>
+      </figure>
+
+      <figure class="piece tall"
+        data-cat="portrait" data-catja="人物画" data-med="charcoal"
+        data-title="まなざし" data-sub="人物画　／　スケッチブック・木炭　／　2024"
+        data-desc="［木炭のデッサン。ここに解説を。］">
+        <div class="frame"><div class="mat"><div class="art"><span class="ph">作品 二</span></div></div></div>
+        <figcaption class="placard">
+          <span class="cat">人物画</span>
+          <div class="t">まなざし</div>
+          <div class="sub">スケッチブック・木炭　／　2024</div>
+        </figcaption>
+      </figure>
+
+      <figure class="piece"
+        data-cat="landscape" data-catja="風景画" data-med="pencil"
+        data-title="路地の記憶" data-sub="風景画　／　スケッチブック・鉛筆　／　2023"
+        data-desc="［鉛筆のスケッチ。ここに解説を。］">
+        <div class="frame"><div class="mat"><div class="art"><span class="ph">作品 三</span></div></div></div>
+        <figcaption class="placard">
+          <span class="cat">風景画</span>
+          <div class="t">路地の記憶</div>
+          <div class="sub">スケッチブック・鉛筆　／　2023</div>
+        </figcaption>
+      </figure>
+
+      <figure class="piece wide"
+        data-cat="landscape" data-catja="風景画" data-med="procreate"
+        data-title="遠い山なみ" data-sub="風景画　／　Procreate　／　2023"
+        data-desc="［横長の風景。ここに解説を。］">
+        <div class="frame"><div class="mat"><div class="art"><span class="ph">作品 四</span></div></div></div>
+        <figcaption class="placard">
+          <span class="cat">風景画</span>
+          <div class="t">遠い山なみ</div>
+          <div class="sub">Procreate　／　2023</div>
+        </figcaption>
+      </figure>
+
+      <figure class="piece"
+        data-cat="design" data-catja="デザイン" data-med="procreate"
+        data-title="紋様の試み" data-sub="デザイン　／　Procreate　／　2022"
+        data-desc="［デザイン作品。コンセプトや用途など。］">
+        <div class="frame"><div class="mat"><div class="art"><span class="ph">作品 五</span></div></div></div>
+        <figcaption class="placard">
+          <span class="cat">デザイン</span>
+          <div class="t">紋様の試み</div>
+          <div class="sub">Procreate　／　2022</div>
+        </figcaption>
+      </figure>
+
+      <figure class="piece tall"
+        data-cat="design" data-catja="デザイン" data-med="pencil"
+        data-title="名もなき形" data-sub="デザイン　／　スケッチブック・鉛筆　／　2022"
+        data-desc="［アイデアスケッチ。ここに解説を。］">
+        <div class="frame"><div class="mat"><div class="art"><span class="ph">作品 六</span></div></div></div>
+        <figcaption class="placard">
+          <span class="cat">デザイン</span>
+          <div class="t">名もなき形</div>
+          <div class="sub">スケッチブック・鉛筆　／　2022</div>
+        </figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- ========================================================= 栞 / profile -->
+<section class="profile" id="profile">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="kanji">栞</span>
+      <span class="en">Profile</span>
+    </div>
+    <div class="profile-grid">
+      <div class="portrait">
+        <img class="portrait-mark" src="images/katanami-icon.svg" alt="片泪 ロゴ">
+        <span>［肖像 / 後で差替］</span>
+      </div>
+      <div class="profile-text">
+        <div class="name">片泪 <span style="font-size:.6em;letter-spacing:.15em;color:var(--sumi-soft);">katanami</span></div>
+        <div class="en">Painter</div>
+        <p id="cfgBio1"></p>
+        <p id="cfgBio2"></p>
+        <dl>
+          <div><dt>拠点</dt><dd id="cfgLocation"></dd></div>
+          <div><dt>画材</dt><dd id="cfgMedia"></dd></div>
+          <div><dt>個展</dt><dd id="cfgExhibition"></dd></div>
+        </dl>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========================================================= 連絡 / contact -->
+<section class="contact" id="contact">
+  <div class="wrap">
+    <div class="lead">ご覧いただき、ありがとうございます</div>
+    <div class="lead-sub">ご依頼・ご感想など、お気軽にどうぞ</div>
+    <div class="contact-links">
+      <!-- ▼ 中身は冒頭の「あなたの情報」で編集できます -->
+      <a id="cfgGmailLink" href="#">
+        <span class="ic gmail">@</span>
+        <span class="meta">
+          <span class="lbl">Gmail</span>
+          <span class="val" id="cfgGmailVal"></span>
+        </span>
+      </a>
+      <a id="cfgXLink" href="#" target="_blank" rel="noopener">
+        <span class="ic x">X</span>
+        <span class="meta">
+          <span class="lbl">X (Twitter)</span>
+          <span class="val" id="cfgXVal"></span>
+        </span>
+      </a>
+    </div>
+  </div>
+  <footer>© 2026 片泪 katanami. All works are the property of the artist.</footer>
+</section>
+
+<!-- ============================================================= lightbox -->
+<div class="lightbox" id="lightbox">
+  <button class="lb-close" id="lbClose" aria-label="閉じる">×</button>
+  <div class="lb-inner">
+    <div class="lb-frame"><div class="lb-mat"><div class="lb-art" id="lbArt"></div></div></div>
+    <div class="lb-cap">
+      <div class="lb-cat" id="lbCat"></div>
+      <div class="t" id="lbTitle"></div>
+      <div class="sub" id="lbSub"></div>
+      <div class="desc" id="lbDesc"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ╔══════════════════════════════════════════════════════════════════╗
+   ║   ★★  あなたの情報 ― ここだけ書き換えればOK  ★★                   ║
+   ║   ・" " （ダブルクォート）の中の文字を、自分の言葉に変えるだけ。   ║
+   ║   ・記号 ［ ］ ごと消して大丈夫です。                              ║
+   ║   ・行の左端や " " は消さないように気をつけてください。            ║
+   ╚══════════════════════════════════════════════════════════════════╝ */
+const PROFILE = {
+
+  // 表紙の一言（トップ画面の右下）
+  heroLead:   "［ここに一言、作品への想いや制作テーマを］",
+
+  // 自己紹介（プロフィールの文章・2段落）
+  bio1:       "［自己紹介をここに。どんな絵を描くのか、なぜ描くのか、大切にしていることなどを、あなたの言葉で。］",
+  bio2:       "［二段落目。制作のスタイルや、これまでの歩みなど。］",
+
+  // プロフィールの一覧
+  location:   "新潟（上越）・宮城（仙台）",          // 拠点
+  media:      "Procreate ／ 鉛筆 ／ 木炭",       // 画材
+  exhibition: "2025 「東北大学学友会前期展・後期展」／ せんだいメディアテーク］",  // 個展
+
+  // 連絡先（アカウントを取ったらここを書き換える）
+  gmail:      "example@gmail.com",               // Gmailアドレス
+  xHandle:    "@example",                        // Xの表示名（@つき）
+  xUrl:       "https://x.com/example",           // XのURL
+
+};
+/* ── ここから下は仕組みです。触らなくてOK ── */
+(function applyProfile(){
+  const set = (id, text)=>{ const el=document.getElementById(id); if(el) el.textContent=text; };
+  set("cfgHeroLead",   PROFILE.heroLead);
+  set("cfgBio1",       PROFILE.bio1);
+  set("cfgBio2",       PROFILE.bio2);
+  set("cfgLocation",   PROFILE.location);
+  set("cfgMedia",      PROFILE.media);
+  set("cfgExhibition", PROFILE.exhibition);
+  set("cfgGmailVal",   PROFILE.gmail);
+  set("cfgXVal",       PROFILE.xHandle);
+  const g = document.getElementById("cfgGmailLink"); if(g) g.href = "mailto:" + PROFILE.gmail;
+  const x = document.getElementById("cfgXLink");     if(x) x.href = PROFILE.xUrl;
+})();
+
+/* ---- スクロールで作品をふわりと表示 ---- */
+const io = new IntersectionObserver((entries)=>{
+  entries.forEach((e,i)=>{
+    if(e.isIntersecting){
+      e.target.style.transitionDelay = (e.target.dataset.d||0)+"ms";
+      e.target.classList.add("in");
+      io.unobserve(e.target);
+    }
+  });
+},{ threshold:.15 });
+document.querySelectorAll("figure.piece").forEach((el,i)=>{
+  el.dataset.d = (i%3)*120;   /* 段ごとに少しずつ遅らせる */
+  io.observe(el);
+});
+
+/* ---- ジャンル×画材で絞り込み（両方を組み合わせて適用） ---- */
+const pieces = document.querySelectorAll("figure.piece");
+const emptyNote = document.getElementById("emptyNote");
+const active = { cat:"all", med:"all" };
+
+document.querySelectorAll(".filter-group").forEach(group=>{
+  const key = group.dataset.group;          /* "cat" または "med" */
+  const tabs = group.querySelectorAll(".filter-tab");
+  tabs.forEach(tab=>{
+    tab.addEventListener("click", ()=>{
+      tabs.forEach(t=>t.classList.remove("active"));
+      tab.classList.add("active");
+      active[key] = tab.dataset.filter;
+      applyFilters();
+    });
+  });
+});
+
+function applyFilters(){
+  let shown = 0;
+  pieces.forEach(p=>{
+    const okCat = (active.cat==="all" || p.dataset.cat===active.cat);
+    const okMed = (active.med==="all" || p.dataset.med===active.med);
+    const show  = okCat && okMed;
+    p.style.display = show ? "flex" : "none";
+    if(show){ p.classList.add("in"); shown++; }
+  });
+  emptyNote.classList.toggle("show", shown===0);
+}
+
+/* ---- 作品クリックで拡大（美術館の解説板つき） ---- */
+const lb    = document.getElementById("lightbox");
+const lbArt = document.getElementById("lbArt");
+const lbCat = document.getElementById("lbCat");
+const lbT   = document.getElementById("lbTitle");
+const lbS   = document.getElementById("lbSub");
+const lbD   = document.getElementById("lbDesc");
+
+pieces.forEach(fig=>{
+  fig.addEventListener("click", ()=>{
+    const art = fig.querySelector(".art");
+    lbArt.style.backgroundImage = getComputedStyle(art).backgroundImage;
+    lbArt.style.aspectRatio =
+      fig.classList.contains("tall") ? "3/5" :
+      fig.classList.contains("wide") ? "5/4" : "4/5";
+    lbCat.textContent = fig.dataset.catja || "";
+    lbT.textContent   = fig.dataset.title || "";
+    lbS.textContent   = fig.dataset.sub   || "";
+    lbD.textContent   = fig.dataset.desc  || "";
+    lb.classList.add("open");
+    document.body.style.overflow = "hidden";
+  });
+});
+function closeLB(){ lb.classList.remove("open"); document.body.style.overflow=""; }
+document.getElementById("lbClose").addEventListener("click", closeLB);
+lb.addEventListener("click", e=>{ if(e.target===lb) closeLB(); });
+document.addEventListener("keydown", e=>{ if(e.key==="Escape") closeLB(); });
+</script>
+</body>
+</html>
