@@ -420,28 +420,25 @@ footer{
     repeating-linear-gradient(45deg, rgba(90,76,54,.05) 0 6px, transparent 6px 12px);
   background-size:cover; background-position:center;
 }
-/* キャプションは画像の横に縦書き（美術館の解説札） */
+/* キャプションは画像の右横に横書き（美術館の解説札） */
 .lb-cap{
-  writing-mode:vertical-rl; text-orientation:mixed;
-  color:var(--washi); max-height:min(82vh,760px); text-align:start;
+  color:var(--washi); text-align:left;
+  max-width:min(20em,30vw); flex:none;
 }
 .lb-cat{
-  display:block; margin:0 0 0 18px; align-self:flex-start;
+  display:inline-block; margin:0 0 14px;
   font-size:11px; letter-spacing:.24em; color:#f0c9bd;
-  padding:9px 4px; border:1px solid rgba(240,201,189,.4); border-radius:2px;
+  padding:3px 13px; border:1px solid rgba(240,201,189,.4); border-radius:2px;
 }
-.lb-cap .t{ font-size:clamp(21px,2.4vw,27px); letter-spacing:.16em; margin:0 0 0 20px; }
-.lb-cap .sub{ font-size:13px; color:#c9beac; letter-spacing:.18em; margin:0 0 0 16px; }
-.lb-cap .desc{ font-size:14px; color:#d8cebc; line-height:2; letter-spacing:.08em; margin:0; }
+.lb-cap .t{ font-size:clamp(20px,2vw,26px); letter-spacing:.1em; }
+.lb-cap .sub{ margin-top:10px; font-size:13px; color:#c9beac; letter-spacing:.1em; }
+.lb-cap .desc{ margin-top:16px; font-size:14px; color:#d8cebc; line-height:1.95; }
 
-/* 狭い画面では従来どおり縦積み（キャプションは画像の下・横書き） */
+/* 狭い画面ではキャプションを画像の下に（横書きのまま中央寄せ） */
 @media (max-width:820px){
   .lb-inner{ flex-direction:column; gap:16px; }
-  .lb-cap{ writing-mode:horizontal-tb; text-align:center; max-height:none; }
-  .lb-cat{ display:inline-block; margin:0 0 12px 0; padding:3px 13px; }
-  .lb-cap .t{ margin:0; }
-  .lb-cap .sub{ margin:8px 0 0; }
-  .lb-cap .desc{ margin:14px auto 0; max-width:30em; }
+  .lb-cap{ text-align:center; max-width:32em; }
+  .lb-cap .desc{ margin-left:auto; margin-right:auto; }
   .lb-art{ height:min(64vh,560px); max-width:88vw; }
 }
 .lb-close{
