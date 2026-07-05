@@ -653,6 +653,8 @@ html.night figure.piece::before{
             <span class="ja">すべて</span><span class="en">All</span></button>
           <button class="filter-tab" data-filter="procreate">
             <span class="ja">Procreate</span><span class="en">Digital</span></button>
+          <button class="filter-tab" data-filter="ibispaint">
+            <span class="ja">ibisPaint</span><span class="en">Digital</span></button>
           <button class="filter-tab" data-filter="pencil">
             <span class="ja">鉛筆</span><span class="en">Pencil</span></button>
           <button class="filter-tab" data-filter="charcoal">
@@ -671,431 +673,409 @@ html.night figure.piece::before{
     <p class="empty-note" id="emptyNote">この組み合わせの作品は、まだありません。</p>
 
     <div class="grid" id="grid">
-      <!-- ▼ 画像52点を自動配置。ジャンル(data-cat)/画材(data-med)/題名(data-title)は
-           推定の仮です。図の中身を見て自由に直してください。
-           data-cat … portrait(人物画)/landscape(風景画)/animal(動物)/design(デザイン)
-           data-med … procreate / pencil / charcoal
-           data-more … 部分アップ等を "images/a.jpg,images/b.jpg" で追加可 -->
+      <!-- ▼ 作品52点→31点。data-cat(ジャンル)/data-med(画材)/data-title(題名)/
+           data-year(YYYYMM・並び替え用)/data-sub(画材・年)/data-desc(解説) を編集可。
+           data-cat … portrait/landscape/animal/design
+           data-med … procreate / ibispaint / pencil / charcoal -->
       <figure class="piece"
         data-cat="portrait" data-catja="人物画" data-med="pencil"
-        data-year="" data-img="images/work-01.jpg" data-more=""
-        data-title="翼の習作" data-sub="人物画　／　スケッチブック・鉛筆"
-        data-desc="">
-        <div class="frame"><div class="mat"><div class="art"><span class="ph">翼の習作</span></div></div></div>
+        data-year="201907" data-img="images/work-01.jpg" data-more=""
+        data-title="オールマイト模写" data-sub="スケッチブック・鉛筆　／　2019.7"
+        data-desc="授業以外で初めて描いた絵です。">
+        <div class="frame"><div class="mat"><div class="art"><span class="ph">オールマイト模写</span></div></div></div>
         <figcaption class="placard">
           <span class="cat">人物画</span>
-          <div class="t">翼の習作</div>
-          <div class="sub">スケッチブック・鉛筆</div>
+          <div class="t">オールマイト模写</div>
+          <div class="sub">スケッチブック・鉛筆　／　2019.7</div>
         </figcaption>
       </figure>
 
       <figure class="piece tall"
         data-cat="portrait" data-catja="人物画" data-med="pencil"
-        data-year="" data-img="images/work-02.jpg" data-more=""
-        data-title="立像" data-sub="人物画　／　スケッチブック・鉛筆"
-        data-desc="">
-        <div class="frame"><div class="mat"><div class="art"><span class="ph">立像</span></div></div></div>
+        data-year="201911" data-img="images/work-02.jpg" data-more=""
+        data-title="禰豆子模写" data-sub="スケッチブック・鉛筆　／　2019.11"
+        data-desc="鬼滅の刃が流行っていました。">
+        <div class="frame"><div class="mat"><div class="art"><span class="ph">禰豆子模写</span></div></div></div>
         <figcaption class="placard">
           <span class="cat">人物画</span>
-          <div class="t">立像</div>
-          <div class="sub">スケッチブック・鉛筆</div>
+          <div class="t">禰豆子模写</div>
+          <div class="sub">スケッチブック・鉛筆　／　2019.11</div>
         </figcaption>
       </figure>
 
       <figure class="piece wide"
-        data-cat="landscape" data-catja="風景画" data-med="procreate"
-        data-year="" data-img="images/work-03.jpg" data-more=""
-        data-title="夕暮れの道" data-sub="風景画　／　Procreate"
-        data-desc="">
-        <div class="frame"><div class="mat"><div class="art"><span class="ph">夕暮れの道</span></div></div></div>
+        data-cat="landscape" data-catja="風景画" data-med="ibispaint"
+        data-year="202406" data-img="images/work-03.jpg" data-more=""
+        data-title="夕暮れ" data-sub="ibisPaint　／　2024.6"
+        data-desc="地元の夕暮れです。">
+        <div class="frame"><div class="mat"><div class="art"><span class="ph">夕暮れ</span></div></div></div>
         <figcaption class="placard">
           <span class="cat">風景画</span>
-          <div class="t">夕暮れの道</div>
-          <div class="sub">Procreate</div>
+          <div class="t">夕暮れ</div>
+          <div class="sub">ibisPaint　／　2024.6</div>
         </figcaption>
       </figure>
 
       <figure class="piece wide"
-        data-cat="landscape" data-catja="風景画" data-med="procreate"
-        data-year="" data-img="images/work-04.jpg" data-more=""
-        data-title="雪の日" data-sub="風景画　／　Procreate"
-        data-desc="">
+        data-cat="landscape" data-catja="風景画" data-med="ibispaint"
+        data-year="202406" data-img="images/work-04.jpg" data-more=""
+        data-title="雪の日" data-sub="ibisPaint　／　2024.6"
+        data-desc="模試を受けた日だった気がします。">
         <div class="frame"><div class="mat"><div class="art"><span class="ph">雪の日</span></div></div></div>
         <figcaption class="placard">
           <span class="cat">風景画</span>
           <div class="t">雪の日</div>
-          <div class="sub">Procreate</div>
+          <div class="sub">ibisPaint　／　2024.6</div>
         </figcaption>
       </figure>
 
       <figure class="piece tall"
         data-cat="portrait" data-catja="人物画" data-med="procreate"
-        data-year="" data-img="images/work-05.jpg" data-more=""
-        data-title="紅い髪" data-sub="人物画　／　Procreate"
-        data-desc="">
-        <div class="frame"><div class="mat"><div class="art"><span class="ph">紅い髪</span></div></div></div>
+        data-year="202510" data-img="images/work-05.jpg" data-more=""
+        data-title="マキマ" data-sub="Procreate　／　2025.10"
+        data-desc="初めてキャラをちゃんと描いた気がします。">
+        <div class="frame"><div class="mat"><div class="art"><span class="ph">マキマ</span></div></div></div>
         <figcaption class="placard">
           <span class="cat">人物画</span>
-          <div class="t">紅い髪</div>
-          <div class="sub">Procreate</div>
+          <div class="t">マキマ</div>
+          <div class="sub">Procreate　／　2025.10</div>
         </figcaption>
       </figure>
 
       <figure class="piece wide"
         data-cat="portrait" data-catja="人物画" data-med="procreate"
-        data-year="" data-img="images/work-06.jpg" data-more=""
-        data-title="隙間から" data-sub="人物画　／　Procreate"
-        data-desc="">
-        <div class="frame"><div class="mat"><div class="art"><span class="ph">隙間から</span></div></div></div>
+        data-year="202510" data-img="images/work-06.jpg" data-more=""
+        data-title="コントラスト" data-sub="Procreate　／　2025.10"
+        data-desc="人の顔の構造を勉強しました。">
+        <div class="frame"><div class="mat"><div class="art"><span class="ph">コントラスト</span></div></div></div>
         <figcaption class="placard">
           <span class="cat">人物画</span>
-          <div class="t">隙間から</div>
-          <div class="sub">Procreate</div>
+          <div class="t">コントラスト</div>
+          <div class="sub">Procreate　／　2025.10</div>
         </figcaption>
       </figure>
 
       <figure class="piece tall"
         data-cat="landscape" data-catja="風景画" data-med="procreate"
-        data-year="" data-img="images/work-07.jpg" data-more=""
-        data-title="灯り" data-sub="風景画　／　Procreate"
-        data-desc="">
-        <div class="frame"><div class="mat"><div class="art"><span class="ph">灯り</span></div></div></div>
+        data-year="202603" data-img="images/work-07.jpg" data-more=""
+        data-title="remake；雪の日" data-sub="Procreate　／　2026.3"
+        data-desc="オーバーレイを使いました。">
+        <div class="frame"><div class="mat"><div class="art"><span class="ph">remake；雪の日</span></div></div></div>
         <figcaption class="placard">
           <span class="cat">風景画</span>
-          <div class="t">灯り</div>
-          <div class="sub">Procreate</div>
+          <div class="t">remake；雪の日</div>
+          <div class="sub">Procreate　／　2026.3</div>
         </figcaption>
       </figure>
 
       <figure class="piece"
-        data-cat="portrait" data-catja="人物画" data-med="charcoal"
-        data-year="" data-img="images/work-08.jpg" data-more=""
-        data-title="焦燥" data-sub="人物画　／　スケッチブック・木炭"
-        data-desc="">
-        <div class="frame"><div class="mat"><div class="art"><span class="ph">焦燥</span></div></div></div>
+        data-cat="portrait" data-catja="人物画" data-med="procreate"
+        data-year="202603" data-img="images/work-08.jpg" data-more=""
+        data-title="灰色の記憶" data-sub="Procreate　／　2026.3"
+        data-desc="クールベ「絶望」のオマージュです。">
+        <div class="frame"><div class="mat"><div class="art"><span class="ph">灰色の記憶</span></div></div></div>
         <figcaption class="placard">
           <span class="cat">人物画</span>
-          <div class="t">焦燥</div>
-          <div class="sub">スケッチブック・木炭</div>
+          <div class="t">灰色の記憶</div>
+          <div class="sub">Procreate　／　2026.3</div>
         </figcaption>
       </figure>
 
       <figure class="piece wide"
         data-cat="design" data-catja="デザイン" data-med="procreate"
-        data-year="" data-img="images/work-09.jpg" data-more=""
-        data-title="眼" data-sub="デザイン　／　Procreate"
-        data-desc="">
-        <div class="frame"><div class="mat"><div class="art"><span class="ph">眼</span></div></div></div>
+        data-year="202603" data-img="images/work-09.jpg" data-more=""
+        data-title="eyes" data-sub="Procreate　／　2026.3"
+        data-desc="目を描きたかったので。">
+        <div class="frame"><div class="mat"><div class="art"><span class="ph">eyes</span></div></div></div>
         <figcaption class="placard">
           <span class="cat">デザイン</span>
-          <div class="t">眼</div>
-          <div class="sub">Procreate</div>
+          <div class="t">eyes</div>
+          <div class="sub">Procreate　／　2026.3</div>
         </figcaption>
       </figure>
 
       <figure class="piece tall"
         data-cat="animal" data-catja="動物" data-med="procreate"
-        data-year="" data-img="images/work-10.jpg" data-more=""
-        data-title="馬" data-sub="動物　／　Procreate"
-        data-desc="">
-        <div class="frame"><div class="mat"><div class="art"><span class="ph">馬</span></div></div></div>
+        data-year="202603" data-img="images/work-10.jpg" data-more=""
+        data-title="躍動" data-sub="Procreate　／　2026.3"
+        data-desc="馬の筋肉を頑張りました。">
+        <div class="frame"><div class="mat"><div class="art"><span class="ph">躍動</span></div></div></div>
         <figcaption class="placard">
           <span class="cat">動物</span>
-          <div class="t">馬</div>
-          <div class="sub">Procreate</div>
+          <div class="t">躍動</div>
+          <div class="sub">Procreate　／　2026.3</div>
         </figcaption>
       </figure>
 
       <figure class="piece wide"
         data-cat="design" data-catja="デザイン" data-med="procreate"
-        data-year="" data-img="images/work-11.jpg" data-more=""
-        data-title="赤い眼鏡" data-sub="デザイン　／　Procreate"
-        data-desc="">
-        <div class="frame"><div class="mat"><div class="art"><span class="ph">赤い眼鏡</span></div></div></div>
+        data-year="202603" data-img="images/work-11.jpg" data-more=""
+        data-title="1.0の景色" data-sub="Procreate　／　2026.3"
+        data-desc="眼鏡をかけると物がよく見えます。">
+        <div class="frame"><div class="mat"><div class="art"><span class="ph">1.0の景色</span></div></div></div>
         <figcaption class="placard">
           <span class="cat">デザイン</span>
-          <div class="t">赤い眼鏡</div>
-          <div class="sub">Procreate</div>
+          <div class="t">1.0の景色</div>
+          <div class="sub">Procreate　／　2026.3</div>
         </figcaption>
       </figure>
 
       <figure class="piece tall"
-        data-cat="portrait" data-catja="人物画" data-med="charcoal"
-        data-year="" data-img="images/work-12.jpg" data-more=""
-        data-title="面差し" data-sub="人物画　／　スケッチブック・木炭"
-        data-desc="">
-        <div class="frame"><div class="mat"><div class="art"><span class="ph">面差し</span></div></div></div>
+        data-cat="portrait" data-catja="人物画" data-med="procreate"
+        data-year="202605" data-img="images/work-12.jpg" data-more=""
+        data-title="マチルダ習作" data-sub="Procreate　／　2026.5"
+        data-desc="レオンを観ました。">
+        <div class="frame"><div class="mat"><div class="art"><span class="ph">マチルダ習作</span></div></div></div>
         <figcaption class="placard">
           <span class="cat">人物画</span>
-          <div class="t">面差し</div>
-          <div class="sub">スケッチブック・木炭</div>
+          <div class="t">マチルダ習作</div>
+          <div class="sub">Procreate　／　2026.5</div>
         </figcaption>
       </figure>
-
-
 
       <figure class="piece tall"
         data-cat="design" data-catja="デザイン" data-med="procreate"
-        data-year="" data-img="images/work-15.jpg" data-more=""
-        data-title="前期展ポスター" data-sub="デザイン　／　Procreate"
-        data-desc="">
-        <div class="frame"><div class="mat"><div class="art"><span class="ph">前期展ポスター</span></div></div></div>
+        data-year="202605" data-img="images/work-15.jpg" data-more=""
+        data-title="夜まだき" data-sub="Procreate　／　2026.5"
+        data-desc="前期展のポスターの絵です。">
+        <div class="frame"><div class="mat"><div class="art"><span class="ph">夜まだき</span></div></div></div>
         <figcaption class="placard">
           <span class="cat">デザイン</span>
-          <div class="t">前期展ポスター</div>
-          <div class="sub">Procreate</div>
+          <div class="t">夜まだき</div>
+          <div class="sub">Procreate　／　2026.5</div>
         </figcaption>
       </figure>
 
       <figure class="piece tall"
-        data-cat="portrait" data-catja="人物画" data-med="pencil"
-        data-year="" data-img="images/work-16.jpg" data-more=""
-        data-title="石膏像" data-sub="人物画　／　スケッチブック・鉛筆"
-        data-desc="">
-        <div class="frame"><div class="mat"><div class="art"><span class="ph">石膏像</span></div></div></div>
+        data-cat="portrait" data-catja="人物画" data-med="procreate"
+        data-year="202605" data-img="images/work-16.jpg" data-more=""
+        data-title="ラオコーンデッサン" data-sub="Procreate　／　2026.5"
+        data-desc="初めてちゃんと彫刻を描きました。">
+        <div class="frame"><div class="mat"><div class="art"><span class="ph">ラオコーンデッサン</span></div></div></div>
         <figcaption class="placard">
           <span class="cat">人物画</span>
-          <div class="t">石膏像</div>
-          <div class="sub">スケッチブック・鉛筆</div>
+          <div class="t">ラオコーンデッサン</div>
+          <div class="sub">Procreate　／　2026.5</div>
         </figcaption>
       </figure>
-
-
-
-
-
-
-
 
       <figure class="piece wide"
         data-cat="design" data-catja="デザイン" data-med="procreate"
-        data-year="" data-img="images/work-24.jpg" data-more=""
-        data-title="紅い花" data-sub="デザイン　／　Procreate"
-        data-desc="">
-        <div class="frame"><div class="mat"><div class="art"><span class="ph">紅い花</span></div></div></div>
+        data-year="202606" data-img="images/work-24.jpg" data-more=""
+        data-title="ツツジ" data-sub="Procreate　／　2026.6"
+        data-desc="10分程度のスケッチです。">
+        <div class="frame"><div class="mat"><div class="art"><span class="ph">ツツジ</span></div></div></div>
         <figcaption class="placard">
           <span class="cat">デザイン</span>
-          <div class="t">紅い花</div>
-          <div class="sub">Procreate</div>
-        </figcaption>
-      </figure>
-
-
-
-
-
-
-
-      <figure class="piece tall"
-        data-cat="portrait" data-catja="人物画" data-med="pencil"
-        data-year="" data-img="images/work-31.jpg" data-more=""
-        data-title="踊り" data-sub="人物画　／　スケッチブック・鉛筆"
-        data-desc="">
-        <div class="frame"><div class="mat"><div class="art"><span class="ph">踊り</span></div></div></div>
-        <figcaption class="placard">
-          <span class="cat">人物画</span>
-          <div class="t">踊り</div>
-          <div class="sub">スケッチブック・鉛筆</div>
+          <div class="t">ツツジ</div>
+          <div class="sub">Procreate　／　2026.6</div>
         </figcaption>
       </figure>
 
       <figure class="piece tall"
         data-cat="portrait" data-catja="人物画" data-med="pencil"
-        data-year="" data-img="images/work-32.jpg" data-more=""
-        data-title="友の肖像" data-sub="人物画　／　スケッチブック・鉛筆"
-        data-desc="">
-        <div class="frame"><div class="mat"><div class="art"><span class="ph">友の肖像</span></div></div></div>
+        data-year="202409" data-img="images/work-31.jpg" data-more=""
+        data-title="無題" data-sub="スケッチブック・鉛筆　／　2024.9"
+        data-desc="直江津にある像のスケッチです。">
+        <div class="frame"><div class="mat"><div class="art"><span class="ph">無題</span></div></div></div>
         <figcaption class="placard">
           <span class="cat">人物画</span>
-          <div class="t">友の肖像</div>
-          <div class="sub">スケッチブック・鉛筆</div>
+          <div class="t">無題</div>
+          <div class="sub">スケッチブック・鉛筆　／　2024.9</div>
+        </figcaption>
+      </figure>
+
+      <figure class="piece tall"
+        data-cat="portrait" data-catja="人物画" data-med="pencil"
+        data-year="202409" data-img="images/work-32.jpg" data-more=""
+        data-title="掟上今日子模写" data-sub="スケッチブック・鉛筆　／　2024.9"
+        data-desc="掟上今日子の備忘録は一番好きなドラマです。">
+        <div class="frame"><div class="mat"><div class="art"><span class="ph">掟上今日子模写</span></div></div></div>
+        <figcaption class="placard">
+          <span class="cat">人物画</span>
+          <div class="t">掟上今日子模写</div>
+          <div class="sub">スケッチブック・鉛筆　／　2024.9</div>
         </figcaption>
       </figure>
 
       <figure class="piece wide"
         data-cat="animal" data-catja="動物" data-med="pencil"
-        data-year="" data-img="images/work-33.jpg" data-more=""
-        data-title="兜虫" data-sub="動物　／　スケッチブック・鉛筆"
-        data-desc="">
-        <div class="frame"><div class="mat"><div class="art"><span class="ph">兜虫</span></div></div></div>
+        data-year="202306" data-img="images/work-33.jpg" data-more=""
+        data-title="カブトムシ" data-sub="スケッチブック・鉛筆　／　2023.6"
+        data-desc="記憶を頼りに書きました。">
+        <div class="frame"><div class="mat"><div class="art"><span class="ph">カブトムシ</span></div></div></div>
         <figcaption class="placard">
           <span class="cat">動物</span>
-          <div class="t">兜虫</div>
-          <div class="sub">スケッチブック・鉛筆</div>
+          <div class="t">カブトムシ</div>
+          <div class="sub">スケッチブック・鉛筆　／　2023.6</div>
         </figcaption>
       </figure>
 
       <figure class="piece wide"
         data-cat="portrait" data-catja="人物画" data-med="charcoal"
         data-year="" data-img="images/work-34.jpg" data-more=""
-        data-title="横顔・面" data-sub="人物画　／　スケッチブック・木炭"
+        data-title="無題（34・情報待ち）" data-sub="スケッチブック・木炭"
         data-desc="">
-        <div class="frame"><div class="mat"><div class="art"><span class="ph">横顔・面</span></div></div></div>
+        <div class="frame"><div class="mat"><div class="art"><span class="ph">無題（34・情報待ち）</span></div></div></div>
         <figcaption class="placard">
           <span class="cat">人物画</span>
-          <div class="t">横顔・面</div>
+          <div class="t">無題（34・情報待ち）</div>
           <div class="sub">スケッチブック・木炭</div>
         </figcaption>
       </figure>
 
       <figure class="piece tall"
-        data-cat="animal" data-catja="動物" data-med="pencil"
-        data-year="" data-img="images/work-35.jpg" data-more=""
-        data-title="梟" data-sub="動物　／　スケッチブック・鉛筆"
-        data-desc="">
-        <div class="frame"><div class="mat"><div class="art"><span class="ph">梟</span></div></div></div>
+        data-cat="animal" data-catja="動物" data-med="charcoal"
+        data-year="202606" data-img="images/work-35.jpg" data-more=""
+        data-title="オオサンショウウオ" data-sub="スケッチブック・木炭　／　2026.6"
+        data-desc="初めて木炭を使いました。">
+        <div class="frame"><div class="mat"><div class="art"><span class="ph">オオサンショウウオ</span></div></div></div>
         <figcaption class="placard">
           <span class="cat">動物</span>
-          <div class="t">梟</div>
-          <div class="sub">スケッチブック・鉛筆</div>
+          <div class="t">オオサンショウウオ</div>
+          <div class="sub">スケッチブック・木炭　／　2026.6</div>
         </figcaption>
       </figure>
-
-
 
       <figure class="piece tall"
         data-cat="portrait" data-catja="人物画" data-med="procreate"
-        data-year="" data-img="images/work-38.jpg" data-more=""
-        data-title="唄" data-sub="人物画　／　Procreate"
-        data-desc="">
-        <div class="frame"><div class="mat"><div class="art"><span class="ph">唄</span></div></div></div>
+        data-year="202606" data-img="images/work-38.jpg" data-more=""
+        data-title="singer" data-sub="Procreate　／　2026.6"
+        data-desc="個人的にかなり好きな絵です。">
+        <div class="frame"><div class="mat"><div class="art"><span class="ph">singer</span></div></div></div>
         <figcaption class="placard">
           <span class="cat">人物画</span>
-          <div class="t">唄</div>
-          <div class="sub">Procreate</div>
+          <div class="t">singer</div>
+          <div class="sub">Procreate　／　2026.6</div>
         </figcaption>
       </figure>
-
 
       <figure class="piece wide"
         data-cat="animal" data-catja="動物" data-med="procreate"
-        data-year="" data-img="images/work-40.jpg" data-more=""
-        data-title="雪原の狼" data-sub="動物　／　Procreate"
-        data-desc="">
-        <div class="frame"><div class="mat"><div class="art"><span class="ph">雪原の狼</span></div></div></div>
+        data-year="202605" data-img="images/work-40.jpg" data-more=""
+        data-title="サモエド" data-sub="Procreate　／　2026.5"
+        data-desc="ワンドロです。">
+        <div class="frame"><div class="mat"><div class="art"><span class="ph">サモエド</span></div></div></div>
         <figcaption class="placard">
           <span class="cat">動物</span>
-          <div class="t">雪原の狼</div>
-          <div class="sub">Procreate</div>
+          <div class="t">サモエド</div>
+          <div class="sub">Procreate　／　2026.5</div>
         </figcaption>
       </figure>
 
-
       <figure class="piece"
         data-cat="portrait" data-catja="人物画" data-med="procreate"
-        data-year="" data-img="images/work-42.jpg" data-more=""
-        data-title="横顔の少年" data-sub="人物画　／　Procreate"
-        data-desc="">
-        <div class="frame"><div class="mat"><div class="art"><span class="ph">横顔の少年</span></div></div></div>
+        data-year="202605" data-img="images/work-42.jpg" data-more=""
+        data-title="東京の思い出" data-sub="Procreate　／　2026.5"
+        data-desc="色を久しぶりに使いました。">
+        <div class="frame"><div class="mat"><div class="art"><span class="ph">東京の思い出</span></div></div></div>
         <figcaption class="placard">
           <span class="cat">人物画</span>
-          <div class="t">横顔の少年</div>
-          <div class="sub">Procreate</div>
+          <div class="t">東京の思い出</div>
+          <div class="sub">Procreate　／　2026.5</div>
         </figcaption>
       </figure>
 
       <figure class="piece"
         data-cat="animal" data-catja="動物" data-med="procreate"
-        data-year="" data-img="images/work-43.jpg" data-more=""
-        data-title="猫" data-sub="動物　／　Procreate"
-        data-desc="">
+        data-year="202412" data-img="images/work-43.jpg" data-more=""
+        data-title="猫" data-sub="Procreate　／　2024.12"
+        data-desc="友達に頼まれていたことを大晦日に思い出して描きました。">
         <div class="frame"><div class="mat"><div class="art"><span class="ph">猫</span></div></div></div>
         <figcaption class="placard">
           <span class="cat">動物</span>
           <div class="t">猫</div>
-          <div class="sub">Procreate</div>
+          <div class="sub">Procreate　／　2024.12</div>
         </figcaption>
       </figure>
-
-
 
       <figure class="piece tall"
-        data-cat="design" data-catja="デザイン" data-med="procreate"
-        data-year="" data-img="images/work-46.jpg" data-more=""
-        data-title="灯" data-sub="デザイン　／　Procreate"
+        data-cat="design" data-catja="デザイン" data-med="ibispaint"
+        data-year="202408" data-img="images/work-46.jpg" data-more=""
+        data-title="習作" data-sub="ibisPaint　／　2024.8"
         data-desc="">
-        <div class="frame"><div class="mat"><div class="art"><span class="ph">灯</span></div></div></div>
+        <div class="frame"><div class="mat"><div class="art"><span class="ph">習作</span></div></div></div>
         <figcaption class="placard">
           <span class="cat">デザイン</span>
-          <div class="t">灯</div>
-          <div class="sub">Procreate</div>
+          <div class="t">習作</div>
+          <div class="sub">ibisPaint　／　2024.8</div>
         </figcaption>
       </figure>
 
       <figure class="piece wide"
-        data-cat="landscape" data-catja="風景画" data-med="procreate"
-        data-year="" data-img="images/work-47.jpg" data-more=""
-        data-title="夏雲" data-sub="風景画　／　Procreate"
+        data-cat="landscape" data-catja="風景画" data-med="ibispaint"
+        data-year="202408" data-img="images/work-47.jpg" data-more=""
+        data-title="習作" data-sub="ibisPaint　／　2024.8"
         data-desc="">
-        <div class="frame"><div class="mat"><div class="art"><span class="ph">夏雲</span></div></div></div>
+        <div class="frame"><div class="mat"><div class="art"><span class="ph">習作</span></div></div></div>
         <figcaption class="placard">
           <span class="cat">風景画</span>
-          <div class="t">夏雲</div>
-          <div class="sub">Procreate</div>
+          <div class="t">習作</div>
+          <div class="sub">ibisPaint　／　2024.8</div>
         </figcaption>
       </figure>
 
       <figure class="piece wide"
-        data-cat="landscape" data-catja="風景画" data-med="procreate"
-        data-year="" data-img="images/work-48.jpg" data-more=""
-        data-title="茜" data-sub="風景画　／　Procreate"
+        data-cat="landscape" data-catja="風景画" data-med="ibispaint"
+        data-year="202408" data-img="images/work-48.jpg" data-more=""
+        data-title="習作" data-sub="ibisPaint　／　2024.8"
         data-desc="">
-        <div class="frame"><div class="mat"><div class="art"><span class="ph">茜</span></div></div></div>
+        <div class="frame"><div class="mat"><div class="art"><span class="ph">習作</span></div></div></div>
         <figcaption class="placard">
           <span class="cat">風景画</span>
-          <div class="t">茜</div>
-          <div class="sub">Procreate</div>
+          <div class="t">習作</div>
+          <div class="sub">ibisPaint　／　2024.8</div>
         </figcaption>
       </figure>
 
       <figure class="piece wide"
-        data-cat="landscape" data-catja="風景画" data-med="procreate"
-        data-year="" data-img="images/work-49.jpg" data-more=""
-        data-title="波・一" data-sub="風景画　／　Procreate"
+        data-cat="landscape" data-catja="風景画" data-med="ibispaint"
+        data-year="202408" data-img="images/work-49.jpg" data-more=""
+        data-title="習作" data-sub="ibisPaint　／　2024.8"
         data-desc="">
-        <div class="frame"><div class="mat"><div class="art"><span class="ph">波・一</span></div></div></div>
+        <div class="frame"><div class="mat"><div class="art"><span class="ph">習作</span></div></div></div>
         <figcaption class="placard">
           <span class="cat">風景画</span>
-          <div class="t">波・一</div>
-          <div class="sub">Procreate</div>
+          <div class="t">習作</div>
+          <div class="sub">ibisPaint　／　2024.8</div>
         </figcaption>
       </figure>
 
       <figure class="piece wide"
-        data-cat="landscape" data-catja="風景画" data-med="procreate"
-        data-year="" data-img="images/work-50.jpg" data-more=""
-        data-title="波・二" data-sub="風景画　／　Procreate"
+        data-cat="landscape" data-catja="風景画" data-med="ibispaint"
+        data-year="202408" data-img="images/work-50.jpg" data-more=""
+        data-title="習作" data-sub="ibisPaint　／　2024.8"
         data-desc="">
-        <div class="frame"><div class="mat"><div class="art"><span class="ph">波・二</span></div></div></div>
+        <div class="frame"><div class="mat"><div class="art"><span class="ph">習作</span></div></div></div>
         <figcaption class="placard">
           <span class="cat">風景画</span>
-          <div class="t">波・二</div>
-          <div class="sub">Procreate</div>
+          <div class="t">習作</div>
+          <div class="sub">ibisPaint　／　2024.8</div>
         </figcaption>
       </figure>
 
       <figure class="piece wide"
-        data-cat="landscape" data-catja="風景画" data-med="procreate"
-        data-year="" data-img="images/work-51.jpg" data-more=""
-        data-title="星夜" data-sub="風景画　／　Procreate"
+        data-cat="landscape" data-catja="風景画" data-med="ibispaint"
+        data-year="202408" data-img="images/work-51.jpg" data-more=""
+        data-title="習作" data-sub="ibisPaint　／　2024.8"
         data-desc="">
-        <div class="frame"><div class="mat"><div class="art"><span class="ph">星夜</span></div></div></div>
+        <div class="frame"><div class="mat"><div class="art"><span class="ph">習作</span></div></div></div>
         <figcaption class="placard">
           <span class="cat">風景画</span>
-          <div class="t">星夜</div>
-          <div class="sub">Procreate</div>
+          <div class="t">習作</div>
+          <div class="sub">ibisPaint　／　2024.8</div>
         </figcaption>
       </figure>
 
       <figure class="piece"
         data-cat="animal" data-catja="動物" data-med="procreate"
         data-year="" data-img="images/work-52.jpg" data-more=""
-        data-title="獅子" data-sub="動物　／　Procreate"
-        data-desc="">
-        <div class="frame"><div class="mat"><div class="art"><span class="ph">獅子</span></div></div></div>
+        data-title="ライオン" data-sub="Procreate"
+        data-desc="千葉で最後に見た風景です。">
+        <div class="frame"><div class="mat"><div class="art"><span class="ph">ライオン</span></div></div></div>
         <figcaption class="placard">
           <span class="cat">動物</span>
-          <div class="t">獅子</div>
+          <div class="t">ライオン</div>
           <div class="sub">Procreate</div>
         </figcaption>
       </figure>
@@ -1311,19 +1291,22 @@ pieces.forEach(f=>{ if(f.dataset.img) artLazy.observe(f); });
 
 /* ---- 並び替え（制作年） ---- */
 const grid = document.getElementById("grid");
+function sortGrid(dir){
+  Array.from(grid.querySelectorAll("figure.piece"))
+    .sort((a,b)=>{
+      const ya=+a.dataset.year||0, yb=+b.dataset.year||0;
+      return dir==="new" ? yb-ya : ya-yb;
+    })
+    .forEach(el=>grid.appendChild(el));
+}
 document.querySelectorAll(".sort button").forEach(btn=>{
   btn.addEventListener("click", ()=>{
     document.querySelectorAll(".sort button").forEach(b=>b.classList.remove("active"));
     btn.classList.add("active");
-    const dir = btn.dataset.sort;
-    Array.from(grid.querySelectorAll("figure.piece"))
-      .sort((a,b)=>{
-        const ya=+a.dataset.year||0, yb=+b.dataset.year||0;
-        return dir==="new" ? yb-ya : ya-yb;
-      })
-      .forEach(el=>grid.appendChild(el));
+    sortGrid(btn.dataset.sort);
   });
 });
+sortGrid("new");   /* 初期表示も「新しい順」に合わせる */
 
 /* ---- 作品クリックで拡大（美術館の解説板つき） ---- */
 const lb      = document.getElementById("lightbox");
