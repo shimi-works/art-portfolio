@@ -256,7 +256,7 @@ figure.piece:hover::before{ opacity:1; }
     0 26px 44px -26px rgba(40,30,18,.75),
     0 8px 18px -14px rgba(40,30,18,.6);
   transition:transform .6s cubic-bezier(.2,.7,.2,1), box-shadow .6s;
-  max-width:100%;
+  width:100%; max-width:100%;
 }
 figure.piece:hover .frame{
   transform:translateY(-6px);
@@ -272,6 +272,7 @@ figure.piece:hover .frame{
   box-shadow:0 0 0 1px rgba(0,0,0,.06) inset;
 }
 .art{
+  width:100%;
   aspect-ratio:4/5;
   background-color:#d9cfba;
   /* ▼ 画像を入れるときはここを background-image に差し替え
@@ -487,7 +488,12 @@ footer{
 
 /* 遅延読み込み（画像が近づいたら差し込む） */
 .art.loaded .ph{ display:none; }
-.art.loaded{ background-color:transparent; }
+.art.loaded{
+  background-color:var(--washi);
+  background-size:contain;
+  background-repeat:no-repeat;
+  background-position:center;
+}
 
 /* お知らせ / News */
 .news{ padding:clamp(64px,9vw,110px) 0; border-top:1px solid var(--line); }
@@ -634,6 +640,8 @@ html.night figure.piece::before{
             <span class="ja">人物画</span><span class="en">Portrait</span></button>
           <button class="filter-tab" data-filter="landscape">
             <span class="ja">風景画</span><span class="en">Landscape</span></button>
+          <button class="filter-tab" data-filter="animal">
+            <span class="ja">動物</span><span class="en">Animal</span></button>
           <button class="filter-tab" data-filter="design">
             <span class="ja">デザイン</span><span class="en">Design</span></button>
         </div>
@@ -663,91 +671,684 @@ html.night figure.piece::before{
     <p class="empty-note" id="emptyNote">この組み合わせの作品は、まだありません。</p>
 
     <div class="grid" id="grid">
-      <!-- ▼ 作品を増やすときは <figure> をコピー。
-           data-cat … portrait(人物画) / landscape(風景画) / design(デザイン)
-           data-catja … 札に出す日本語のジャンル名
-           data-med … procreate / pencil / charcoal（画材フィルター用）
-           data-year … 制作年（並び替えに使用）
-           data-img … 作品画像のパス 例) data-img="images/sakuhin-01.jpg"
-                       （空のままだと「作品○」のプレースホルダー表示）
-           data-more … 追加の画像（部分アップなど）をカンマ区切りで
-                        例) data-more="images/01-detail.jpg,images/01-sketch.jpg"
-           data-* の内容がクリック時の拡大表示にも反映されます。          -->
+      <!-- ▼ 画像52点を自動配置。ジャンル(data-cat)/画材(data-med)/題名(data-title)は
+           推定の仮です。図の中身を見て自由に直してください。
+           data-cat … portrait(人物画)/landscape(風景画)/animal(動物)/design(デザイン)
+           data-med … procreate / pencil / charcoal
+           data-more … 部分アップ等を "images/a.jpg,images/b.jpg" で追加可 -->
       <figure class="piece"
-        data-cat="portrait" data-catja="人物画" data-med="procreate"
-        data-year="2024" data-img="" data-more=""
-        data-title="面影" data-sub="人物画　／　Procreate　／　2024"
-        data-desc="［作品の解説やエピソードをここに。モチーフに込めた想いなど。］">
-        <div class="frame"><div class="mat"><div class="art"><span class="ph">作品 一</span></div></div></div>
+        data-cat="portrait" data-catja="人物画" data-med="pencil"
+        data-year="" data-img="images/work-01.jpg" data-more=""
+        data-title="翼の習作" data-sub="人物画　／　スケッチブック・鉛筆"
+        data-desc="">
+        <div class="frame"><div class="mat"><div class="art"><span class="ph">翼の習作</span></div></div></div>
         <figcaption class="placard">
           <span class="cat">人物画</span>
-          <div class="t">面影</div>
-          <div class="sub">Procreate　／　2024</div>
+          <div class="t">翼の習作</div>
+          <div class="sub">スケッチブック・鉛筆</div>
         </figcaption>
       </figure>
 
       <figure class="piece tall"
-        data-cat="portrait" data-catja="人物画" data-med="charcoal"
-        data-year="2024" data-img="" data-more=""
-        data-title="まなざし" data-sub="人物画　／　スケッチブック・木炭　／　2024"
-        data-desc="［木炭のデッサン。ここに解説を。］">
-        <div class="frame"><div class="mat"><div class="art"><span class="ph">作品 二</span></div></div></div>
+        data-cat="portrait" data-catja="人物画" data-med="pencil"
+        data-year="" data-img="images/work-02.jpg" data-more=""
+        data-title="立像" data-sub="人物画　／　スケッチブック・鉛筆"
+        data-desc="">
+        <div class="frame"><div class="mat"><div class="art"><span class="ph">立像</span></div></div></div>
         <figcaption class="placard">
           <span class="cat">人物画</span>
-          <div class="t">まなざし</div>
-          <div class="sub">スケッチブック・木炭　／　2024</div>
-        </figcaption>
-      </figure>
-
-      <figure class="piece"
-        data-cat="landscape" data-catja="風景画" data-med="pencil"
-        data-year="2023" data-img="" data-more=""
-        data-title="路地の記憶" data-sub="風景画　／　スケッチブック・鉛筆　／　2023"
-        data-desc="［鉛筆のスケッチ。ここに解説を。］">
-        <div class="frame"><div class="mat"><div class="art"><span class="ph">作品 三</span></div></div></div>
-        <figcaption class="placard">
-          <span class="cat">風景画</span>
-          <div class="t">路地の記憶</div>
-          <div class="sub">スケッチブック・鉛筆　／　2023</div>
+          <div class="t">立像</div>
+          <div class="sub">スケッチブック・鉛筆</div>
         </figcaption>
       </figure>
 
       <figure class="piece wide"
         data-cat="landscape" data-catja="風景画" data-med="procreate"
-        data-year="2023" data-img="" data-more=""
-        data-title="遠い山なみ" data-sub="風景画　／　Procreate　／　2023"
-        data-desc="［横長の風景。ここに解説を。］">
-        <div class="frame"><div class="mat"><div class="art"><span class="ph">作品 四</span></div></div></div>
+        data-year="" data-img="images/work-03.jpg" data-more=""
+        data-title="夕暮れの道" data-sub="風景画　／　Procreate"
+        data-desc="">
+        <div class="frame"><div class="mat"><div class="art"><span class="ph">夕暮れの道</span></div></div></div>
         <figcaption class="placard">
           <span class="cat">風景画</span>
-          <div class="t">遠い山なみ</div>
-          <div class="sub">Procreate　／　2023</div>
+          <div class="t">夕暮れの道</div>
+          <div class="sub">Procreate</div>
         </figcaption>
       </figure>
 
-      <figure class="piece"
-        data-cat="design" data-catja="デザイン" data-med="procreate"
-        data-year="2022" data-img="" data-more=""
-        data-title="紋様の試み" data-sub="デザイン　／　Procreate　／　2022"
-        data-desc="［デザイン作品。コンセプトや用途など。］">
-        <div class="frame"><div class="mat"><div class="art"><span class="ph">作品 五</span></div></div></div>
+      <figure class="piece wide"
+        data-cat="landscape" data-catja="風景画" data-med="procreate"
+        data-year="" data-img="images/work-04.jpg" data-more=""
+        data-title="雪の日" data-sub="風景画　／　Procreate"
+        data-desc="">
+        <div class="frame"><div class="mat"><div class="art"><span class="ph">雪の日</span></div></div></div>
         <figcaption class="placard">
-          <span class="cat">デザイン</span>
-          <div class="t">紋様の試み</div>
-          <div class="sub">Procreate　／　2022</div>
+          <span class="cat">風景画</span>
+          <div class="t">雪の日</div>
+          <div class="sub">Procreate</div>
         </figcaption>
       </figure>
 
       <figure class="piece tall"
-        data-cat="design" data-catja="デザイン" data-med="pencil"
-        data-year="2022" data-img="" data-more=""
-        data-title="名もなき形" data-sub="デザイン　／　スケッチブック・鉛筆　／　2022"
-        data-desc="［アイデアスケッチ。ここに解説を。］">
-        <div class="frame"><div class="mat"><div class="art"><span class="ph">作品 六</span></div></div></div>
+        data-cat="portrait" data-catja="人物画" data-med="procreate"
+        data-year="" data-img="images/work-05.jpg" data-more=""
+        data-title="紅い髪" data-sub="人物画　／　Procreate"
+        data-desc="">
+        <div class="frame"><div class="mat"><div class="art"><span class="ph">紅い髪</span></div></div></div>
+        <figcaption class="placard">
+          <span class="cat">人物画</span>
+          <div class="t">紅い髪</div>
+          <div class="sub">Procreate</div>
+        </figcaption>
+      </figure>
+
+      <figure class="piece wide"
+        data-cat="portrait" data-catja="人物画" data-med="procreate"
+        data-year="" data-img="images/work-06.jpg" data-more=""
+        data-title="隙間から" data-sub="人物画　／　Procreate"
+        data-desc="">
+        <div class="frame"><div class="mat"><div class="art"><span class="ph">隙間から</span></div></div></div>
+        <figcaption class="placard">
+          <span class="cat">人物画</span>
+          <div class="t">隙間から</div>
+          <div class="sub">Procreate</div>
+        </figcaption>
+      </figure>
+
+      <figure class="piece tall"
+        data-cat="landscape" data-catja="風景画" data-med="procreate"
+        data-year="" data-img="images/work-07.jpg" data-more=""
+        data-title="灯り" data-sub="風景画　／　Procreate"
+        data-desc="">
+        <div class="frame"><div class="mat"><div class="art"><span class="ph">灯り</span></div></div></div>
+        <figcaption class="placard">
+          <span class="cat">風景画</span>
+          <div class="t">灯り</div>
+          <div class="sub">Procreate</div>
+        </figcaption>
+      </figure>
+
+      <figure class="piece"
+        data-cat="portrait" data-catja="人物画" data-med="charcoal"
+        data-year="" data-img="images/work-08.jpg" data-more=""
+        data-title="焦燥" data-sub="人物画　／　スケッチブック・木炭"
+        data-desc="">
+        <div class="frame"><div class="mat"><div class="art"><span class="ph">焦燥</span></div></div></div>
+        <figcaption class="placard">
+          <span class="cat">人物画</span>
+          <div class="t">焦燥</div>
+          <div class="sub">スケッチブック・木炭</div>
+        </figcaption>
+      </figure>
+
+      <figure class="piece wide"
+        data-cat="design" data-catja="デザイン" data-med="procreate"
+        data-year="" data-img="images/work-09.jpg" data-more=""
+        data-title="眼" data-sub="デザイン　／　Procreate"
+        data-desc="">
+        <div class="frame"><div class="mat"><div class="art"><span class="ph">眼</span></div></div></div>
         <figcaption class="placard">
           <span class="cat">デザイン</span>
-          <div class="t">名もなき形</div>
-          <div class="sub">スケッチブック・鉛筆　／　2022</div>
+          <div class="t">眼</div>
+          <div class="sub">Procreate</div>
+        </figcaption>
+      </figure>
+
+      <figure class="piece tall"
+        data-cat="animal" data-catja="動物" data-med="procreate"
+        data-year="" data-img="images/work-10.jpg" data-more=""
+        data-title="馬" data-sub="動物　／　Procreate"
+        data-desc="">
+        <div class="frame"><div class="mat"><div class="art"><span class="ph">馬</span></div></div></div>
+        <figcaption class="placard">
+          <span class="cat">動物</span>
+          <div class="t">馬</div>
+          <div class="sub">Procreate</div>
+        </figcaption>
+      </figure>
+
+      <figure class="piece wide"
+        data-cat="design" data-catja="デザイン" data-med="procreate"
+        data-year="" data-img="images/work-11.jpg" data-more=""
+        data-title="赤い眼鏡" data-sub="デザイン　／　Procreate"
+        data-desc="">
+        <div class="frame"><div class="mat"><div class="art"><span class="ph">赤い眼鏡</span></div></div></div>
+        <figcaption class="placard">
+          <span class="cat">デザイン</span>
+          <div class="t">赤い眼鏡</div>
+          <div class="sub">Procreate</div>
+        </figcaption>
+      </figure>
+
+      <figure class="piece tall"
+        data-cat="portrait" data-catja="人物画" data-med="charcoal"
+        data-year="" data-img="images/work-12.jpg" data-more=""
+        data-title="面差し" data-sub="人物画　／　スケッチブック・木炭"
+        data-desc="">
+        <div class="frame"><div class="mat"><div class="art"><span class="ph">面差し</span></div></div></div>
+        <figcaption class="placard">
+          <span class="cat">人物画</span>
+          <div class="t">面差し</div>
+          <div class="sub">スケッチブック・木炭</div>
+        </figcaption>
+      </figure>
+
+      <figure class="piece tall"
+        data-cat="portrait" data-catja="人物画" data-med="charcoal"
+        data-year="" data-img="images/work-13.jpg" data-more=""
+        data-title="自画像習作" data-sub="人物画　／　スケッチブック・木炭"
+        data-desc="">
+        <div class="frame"><div class="mat"><div class="art"><span class="ph">自画像習作</span></div></div></div>
+        <figcaption class="placard">
+          <span class="cat">人物画</span>
+          <div class="t">自画像習作</div>
+          <div class="sub">スケッチブック・木炭</div>
+        </figcaption>
+      </figure>
+
+      <figure class="piece tall"
+        data-cat="portrait" data-catja="人物画" data-med="procreate"
+        data-year="" data-img="images/work-14.jpg" data-more=""
+        data-title="肖像" data-sub="人物画　／　Procreate"
+        data-desc="">
+        <div class="frame"><div class="mat"><div class="art"><span class="ph">肖像</span></div></div></div>
+        <figcaption class="placard">
+          <span class="cat">人物画</span>
+          <div class="t">肖像</div>
+          <div class="sub">Procreate</div>
+        </figcaption>
+      </figure>
+
+      <figure class="piece tall"
+        data-cat="design" data-catja="デザイン" data-med="procreate"
+        data-year="" data-img="images/work-15.jpg" data-more=""
+        data-title="前期展ポスター" data-sub="デザイン　／　Procreate"
+        data-desc="">
+        <div class="frame"><div class="mat"><div class="art"><span class="ph">前期展ポスター</span></div></div></div>
+        <figcaption class="placard">
+          <span class="cat">デザイン</span>
+          <div class="t">前期展ポスター</div>
+          <div class="sub">Procreate</div>
+        </figcaption>
+      </figure>
+
+      <figure class="piece tall"
+        data-cat="portrait" data-catja="人物画" data-med="pencil"
+        data-year="" data-img="images/work-16.jpg" data-more=""
+        data-title="石膏像" data-sub="人物画　／　スケッチブック・鉛筆"
+        data-desc="">
+        <div class="frame"><div class="mat"><div class="art"><span class="ph">石膏像</span></div></div></div>
+        <figcaption class="placard">
+          <span class="cat">人物画</span>
+          <div class="t">石膏像</div>
+          <div class="sub">スケッチブック・鉛筆</div>
+        </figcaption>
+      </figure>
+
+      <figure class="piece tall"
+        data-cat="design" data-catja="デザイン" data-med="procreate"
+        data-year="" data-img="images/work-17.jpg" data-more=""
+        data-title="月を歩いている・青" data-sub="デザイン　／　Procreate"
+        data-desc="">
+        <div class="frame"><div class="mat"><div class="art"><span class="ph">月を歩いている・青</span></div></div></div>
+        <figcaption class="placard">
+          <span class="cat">デザイン</span>
+          <div class="t">月を歩いている・青</div>
+          <div class="sub">Procreate</div>
+        </figcaption>
+      </figure>
+
+      <figure class="piece tall"
+        data-cat="design" data-catja="デザイン" data-med="procreate"
+        data-year="" data-img="images/work-18.jpg" data-more=""
+        data-title="月を歩いている・一" data-sub="デザイン　／　Procreate"
+        data-desc="">
+        <div class="frame"><div class="mat"><div class="art"><span class="ph">月を歩いている・一</span></div></div></div>
+        <figcaption class="placard">
+          <span class="cat">デザイン</span>
+          <div class="t">月を歩いている・一</div>
+          <div class="sub">Procreate</div>
+        </figcaption>
+      </figure>
+
+      <figure class="piece tall"
+        data-cat="design" data-catja="デザイン" data-med="procreate"
+        data-year="" data-img="images/work-19.jpg" data-more=""
+        data-title="月を歩いている・二" data-sub="デザイン　／　Procreate"
+        data-desc="">
+        <div class="frame"><div class="mat"><div class="art"><span class="ph">月を歩いている・二</span></div></div></div>
+        <figcaption class="placard">
+          <span class="cat">デザイン</span>
+          <div class="t">月を歩いている・二</div>
+          <div class="sub">Procreate</div>
+        </figcaption>
+      </figure>
+
+      <figure class="piece tall"
+        data-cat="design" data-catja="デザイン" data-med="procreate"
+        data-year="" data-img="images/work-20.jpg" data-more=""
+        data-title="月を歩いている・三" data-sub="デザイン　／　Procreate"
+        data-desc="">
+        <div class="frame"><div class="mat"><div class="art"><span class="ph">月を歩いている・三</span></div></div></div>
+        <figcaption class="placard">
+          <span class="cat">デザイン</span>
+          <div class="t">月を歩いている・三</div>
+          <div class="sub">Procreate</div>
+        </figcaption>
+      </figure>
+
+      <figure class="piece tall"
+        data-cat="animal" data-catja="動物" data-med="procreate"
+        data-year="" data-img="images/work-21.jpg" data-more=""
+        data-title="白狼" data-sub="動物　／　Procreate"
+        data-desc="">
+        <div class="frame"><div class="mat"><div class="art"><span class="ph">白狼</span></div></div></div>
+        <figcaption class="placard">
+          <span class="cat">動物</span>
+          <div class="t">白狼</div>
+          <div class="sub">Procreate</div>
+        </figcaption>
+      </figure>
+
+      <figure class="piece"
+        data-cat="portrait" data-catja="人物画" data-med="procreate"
+        data-year="" data-img="images/work-22.jpg" data-more=""
+        data-title="ベレー帽" data-sub="人物画　／　Procreate"
+        data-desc="">
+        <div class="frame"><div class="mat"><div class="art"><span class="ph">ベレー帽</span></div></div></div>
+        <figcaption class="placard">
+          <span class="cat">人物画</span>
+          <div class="t">ベレー帽</div>
+          <div class="sub">Procreate</div>
+        </figcaption>
+      </figure>
+
+      <figure class="piece tall"
+        data-cat="portrait" data-catja="人物画" data-med="procreate"
+        data-year="" data-img="images/work-23.jpg" data-more=""
+        data-title="真珠の耳飾り（模写）" data-sub="人物画　／　Procreate"
+        data-desc="">
+        <div class="frame"><div class="mat"><div class="art"><span class="ph">真珠の耳飾り（模写）</span></div></div></div>
+        <figcaption class="placard">
+          <span class="cat">人物画</span>
+          <div class="t">真珠の耳飾り（模写）</div>
+          <div class="sub">Procreate</div>
+        </figcaption>
+      </figure>
+
+      <figure class="piece wide"
+        data-cat="design" data-catja="デザイン" data-med="procreate"
+        data-year="" data-img="images/work-24.jpg" data-more=""
+        data-title="紅い花" data-sub="デザイン　／　Procreate"
+        data-desc="">
+        <div class="frame"><div class="mat"><div class="art"><span class="ph">紅い花</span></div></div></div>
+        <figcaption class="placard">
+          <span class="cat">デザイン</span>
+          <div class="t">紅い花</div>
+          <div class="sub">Procreate</div>
+        </figcaption>
+      </figure>
+
+      <figure class="piece"
+        data-cat="portrait" data-catja="人物画" data-med="charcoal"
+        data-year="" data-img="images/work-25.jpg" data-more=""
+        data-title="横顔" data-sub="人物画　／　スケッチブック・木炭"
+        data-desc="">
+        <div class="frame"><div class="mat"><div class="art"><span class="ph">横顔</span></div></div></div>
+        <figcaption class="placard">
+          <span class="cat">人物画</span>
+          <div class="t">横顔</div>
+          <div class="sub">スケッチブック・木炭</div>
+        </figcaption>
+      </figure>
+
+      <figure class="piece wide"
+        data-cat="design" data-catja="デザイン" data-med="procreate"
+        data-year="" data-img="images/work-26.jpg" data-more=""
+        data-title="花瓶" data-sub="デザイン　／　Procreate"
+        data-desc="">
+        <div class="frame"><div class="mat"><div class="art"><span class="ph">花瓶</span></div></div></div>
+        <figcaption class="placard">
+          <span class="cat">デザイン</span>
+          <div class="t">花瓶</div>
+          <div class="sub">Procreate</div>
+        </figcaption>
+      </figure>
+
+      <figure class="piece"
+        data-cat="portrait" data-catja="人物画" data-med="charcoal"
+        data-year="" data-img="images/work-27.jpg" data-more=""
+        data-title="微笑" data-sub="人物画　／　スケッチブック・木炭"
+        data-desc="">
+        <div class="frame"><div class="mat"><div class="art"><span class="ph">微笑</span></div></div></div>
+        <figcaption class="placard">
+          <span class="cat">人物画</span>
+          <div class="t">微笑</div>
+          <div class="sub">スケッチブック・木炭</div>
+        </figcaption>
+      </figure>
+
+      <figure class="piece wide"
+        data-cat="portrait" data-catja="人物画" data-med="charcoal"
+        data-year="" data-img="images/work-28.jpg" data-more=""
+        data-title="描く手・一" data-sub="人物画　／　スケッチブック・木炭"
+        data-desc="">
+        <div class="frame"><div class="mat"><div class="art"><span class="ph">描く手・一</span></div></div></div>
+        <figcaption class="placard">
+          <span class="cat">人物画</span>
+          <div class="t">描く手・一</div>
+          <div class="sub">スケッチブック・木炭</div>
+        </figcaption>
+      </figure>
+
+      <figure class="piece wide"
+        data-cat="portrait" data-catja="人物画" data-med="charcoal"
+        data-year="" data-img="images/work-29.jpg" data-more=""
+        data-title="描く手・二" data-sub="人物画　／　スケッチブック・木炭"
+        data-desc="">
+        <div class="frame"><div class="mat"><div class="art"><span class="ph">描く手・二</span></div></div></div>
+        <figcaption class="placard">
+          <span class="cat">人物画</span>
+          <div class="t">描く手・二</div>
+          <div class="sub">スケッチブック・木炭</div>
+        </figcaption>
+      </figure>
+
+      <figure class="piece"
+        data-cat="portrait" data-catja="人物画" data-med="procreate"
+        data-year="" data-img="images/work-30.jpg" data-more=""
+        data-title="彩" data-sub="人物画　／　Procreate"
+        data-desc="">
+        <div class="frame"><div class="mat"><div class="art"><span class="ph">彩</span></div></div></div>
+        <figcaption class="placard">
+          <span class="cat">人物画</span>
+          <div class="t">彩</div>
+          <div class="sub">Procreate</div>
+        </figcaption>
+      </figure>
+
+      <figure class="piece tall"
+        data-cat="portrait" data-catja="人物画" data-med="pencil"
+        data-year="" data-img="images/work-31.jpg" data-more=""
+        data-title="踊り" data-sub="人物画　／　スケッチブック・鉛筆"
+        data-desc="">
+        <div class="frame"><div class="mat"><div class="art"><span class="ph">踊り</span></div></div></div>
+        <figcaption class="placard">
+          <span class="cat">人物画</span>
+          <div class="t">踊り</div>
+          <div class="sub">スケッチブック・鉛筆</div>
+        </figcaption>
+      </figure>
+
+      <figure class="piece tall"
+        data-cat="portrait" data-catja="人物画" data-med="pencil"
+        data-year="" data-img="images/work-32.jpg" data-more=""
+        data-title="友の肖像" data-sub="人物画　／　スケッチブック・鉛筆"
+        data-desc="">
+        <div class="frame"><div class="mat"><div class="art"><span class="ph">友の肖像</span></div></div></div>
+        <figcaption class="placard">
+          <span class="cat">人物画</span>
+          <div class="t">友の肖像</div>
+          <div class="sub">スケッチブック・鉛筆</div>
+        </figcaption>
+      </figure>
+
+      <figure class="piece wide"
+        data-cat="animal" data-catja="動物" data-med="pencil"
+        data-year="" data-img="images/work-33.jpg" data-more=""
+        data-title="兜虫" data-sub="動物　／　スケッチブック・鉛筆"
+        data-desc="">
+        <div class="frame"><div class="mat"><div class="art"><span class="ph">兜虫</span></div></div></div>
+        <figcaption class="placard">
+          <span class="cat">動物</span>
+          <div class="t">兜虫</div>
+          <div class="sub">スケッチブック・鉛筆</div>
+        </figcaption>
+      </figure>
+
+      <figure class="piece wide"
+        data-cat="portrait" data-catja="人物画" data-med="charcoal"
+        data-year="" data-img="images/work-34.jpg" data-more=""
+        data-title="横顔・面" data-sub="人物画　／　スケッチブック・木炭"
+        data-desc="">
+        <div class="frame"><div class="mat"><div class="art"><span class="ph">横顔・面</span></div></div></div>
+        <figcaption class="placard">
+          <span class="cat">人物画</span>
+          <div class="t">横顔・面</div>
+          <div class="sub">スケッチブック・木炭</div>
+        </figcaption>
+      </figure>
+
+      <figure class="piece tall"
+        data-cat="animal" data-catja="動物" data-med="pencil"
+        data-year="" data-img="images/work-35.jpg" data-more=""
+        data-title="梟" data-sub="動物　／　スケッチブック・鉛筆"
+        data-desc="">
+        <div class="frame"><div class="mat"><div class="art"><span class="ph">梟</span></div></div></div>
+        <figcaption class="placard">
+          <span class="cat">動物</span>
+          <div class="t">梟</div>
+          <div class="sub">スケッチブック・鉛筆</div>
+        </figcaption>
+      </figure>
+
+      <figure class="piece wide"
+        data-cat="portrait" data-catja="人物画" data-med="procreate"
+        data-year="" data-img="images/work-36.jpg" data-more=""
+        data-title="黄" data-sub="人物画　／　Procreate"
+        data-desc="">
+        <div class="frame"><div class="mat"><div class="art"><span class="ph">黄</span></div></div></div>
+        <figcaption class="placard">
+          <span class="cat">人物画</span>
+          <div class="t">黄</div>
+          <div class="sub">Procreate</div>
+        </figcaption>
+      </figure>
+
+      <figure class="piece wide"
+        data-cat="landscape" data-catja="風景画" data-med="procreate"
+        data-year="" data-img="images/work-37.jpg" data-more=""
+        data-title="公園" data-sub="風景画　／　Procreate"
+        data-desc="">
+        <div class="frame"><div class="mat"><div class="art"><span class="ph">公園</span></div></div></div>
+        <figcaption class="placard">
+          <span class="cat">風景画</span>
+          <div class="t">公園</div>
+          <div class="sub">Procreate</div>
+        </figcaption>
+      </figure>
+
+      <figure class="piece tall"
+        data-cat="portrait" data-catja="人物画" data-med="procreate"
+        data-year="" data-img="images/work-38.jpg" data-more=""
+        data-title="唄" data-sub="人物画　／　Procreate"
+        data-desc="">
+        <div class="frame"><div class="mat"><div class="art"><span class="ph">唄</span></div></div></div>
+        <figcaption class="placard">
+          <span class="cat">人物画</span>
+          <div class="t">唄</div>
+          <div class="sub">Procreate</div>
+        </figcaption>
+      </figure>
+
+      <figure class="piece tall"
+        data-cat="design" data-catja="デザイン" data-med="procreate"
+        data-year="" data-img="images/work-39.jpg" data-more=""
+        data-title="月を歩いている・四" data-sub="デザイン　／　Procreate"
+        data-desc="">
+        <div class="frame"><div class="mat"><div class="art"><span class="ph">月を歩いている・四</span></div></div></div>
+        <figcaption class="placard">
+          <span class="cat">デザイン</span>
+          <div class="t">月を歩いている・四</div>
+          <div class="sub">Procreate</div>
+        </figcaption>
+      </figure>
+
+      <figure class="piece wide"
+        data-cat="animal" data-catja="動物" data-med="procreate"
+        data-year="" data-img="images/work-40.jpg" data-more=""
+        data-title="雪原の狼" data-sub="動物　／　Procreate"
+        data-desc="">
+        <div class="frame"><div class="mat"><div class="art"><span class="ph">雪原の狼</span></div></div></div>
+        <figcaption class="placard">
+          <span class="cat">動物</span>
+          <div class="t">雪原の狼</div>
+          <div class="sub">Procreate</div>
+        </figcaption>
+      </figure>
+
+      <figure class="piece tall"
+        data-cat="portrait" data-catja="人物画" data-med="charcoal"
+        data-year="" data-img="images/work-41.jpg" data-more=""
+        data-title="面影" data-sub="人物画　／　スケッチブック・木炭"
+        data-desc="">
+        <div class="frame"><div class="mat"><div class="art"><span class="ph">面影</span></div></div></div>
+        <figcaption class="placard">
+          <span class="cat">人物画</span>
+          <div class="t">面影</div>
+          <div class="sub">スケッチブック・木炭</div>
+        </figcaption>
+      </figure>
+
+      <figure class="piece"
+        data-cat="portrait" data-catja="人物画" data-med="procreate"
+        data-year="" data-img="images/work-42.jpg" data-more=""
+        data-title="横顔の少年" data-sub="人物画　／　Procreate"
+        data-desc="">
+        <div class="frame"><div class="mat"><div class="art"><span class="ph">横顔の少年</span></div></div></div>
+        <figcaption class="placard">
+          <span class="cat">人物画</span>
+          <div class="t">横顔の少年</div>
+          <div class="sub">Procreate</div>
+        </figcaption>
+      </figure>
+
+      <figure class="piece"
+        data-cat="animal" data-catja="動物" data-med="procreate"
+        data-year="" data-img="images/work-43.jpg" data-more=""
+        data-title="猫" data-sub="動物　／　Procreate"
+        data-desc="">
+        <div class="frame"><div class="mat"><div class="art"><span class="ph">猫</span></div></div></div>
+        <figcaption class="placard">
+          <span class="cat">動物</span>
+          <div class="t">猫</div>
+          <div class="sub">Procreate</div>
+        </figcaption>
+      </figure>
+
+      <figure class="piece wide"
+        data-cat="design" data-catja="デザイン" data-med="procreate"
+        data-year="" data-img="images/work-44.jpg" data-more=""
+        data-title="もっと" data-sub="デザイン　／　Procreate"
+        data-desc="">
+        <div class="frame"><div class="mat"><div class="art"><span class="ph">もっと</span></div></div></div>
+        <figcaption class="placard">
+          <span class="cat">デザイン</span>
+          <div class="t">もっと</div>
+          <div class="sub">Procreate</div>
+        </figcaption>
+      </figure>
+
+      <figure class="piece"
+        data-cat="portrait" data-catja="人物画" data-med="procreate"
+        data-year="" data-img="images/work-45.jpg" data-more=""
+        data-title="笑顔" data-sub="人物画　／　Procreate"
+        data-desc="">
+        <div class="frame"><div class="mat"><div class="art"><span class="ph">笑顔</span></div></div></div>
+        <figcaption class="placard">
+          <span class="cat">人物画</span>
+          <div class="t">笑顔</div>
+          <div class="sub">Procreate</div>
+        </figcaption>
+      </figure>
+
+      <figure class="piece tall"
+        data-cat="design" data-catja="デザイン" data-med="procreate"
+        data-year="" data-img="images/work-46.jpg" data-more=""
+        data-title="灯" data-sub="デザイン　／　Procreate"
+        data-desc="">
+        <div class="frame"><div class="mat"><div class="art"><span class="ph">灯</span></div></div></div>
+        <figcaption class="placard">
+          <span class="cat">デザイン</span>
+          <div class="t">灯</div>
+          <div class="sub">Procreate</div>
+        </figcaption>
+      </figure>
+
+      <figure class="piece wide"
+        data-cat="landscape" data-catja="風景画" data-med="procreate"
+        data-year="" data-img="images/work-47.jpg" data-more=""
+        data-title="夏雲" data-sub="風景画　／　Procreate"
+        data-desc="">
+        <div class="frame"><div class="mat"><div class="art"><span class="ph">夏雲</span></div></div></div>
+        <figcaption class="placard">
+          <span class="cat">風景画</span>
+          <div class="t">夏雲</div>
+          <div class="sub">Procreate</div>
+        </figcaption>
+      </figure>
+
+      <figure class="piece wide"
+        data-cat="landscape" data-catja="風景画" data-med="procreate"
+        data-year="" data-img="images/work-48.jpg" data-more=""
+        data-title="茜" data-sub="風景画　／　Procreate"
+        data-desc="">
+        <div class="frame"><div class="mat"><div class="art"><span class="ph">茜</span></div></div></div>
+        <figcaption class="placard">
+          <span class="cat">風景画</span>
+          <div class="t">茜</div>
+          <div class="sub">Procreate</div>
+        </figcaption>
+      </figure>
+
+      <figure class="piece wide"
+        data-cat="landscape" data-catja="風景画" data-med="procreate"
+        data-year="" data-img="images/work-49.jpg" data-more=""
+        data-title="波・一" data-sub="風景画　／　Procreate"
+        data-desc="">
+        <div class="frame"><div class="mat"><div class="art"><span class="ph">波・一</span></div></div></div>
+        <figcaption class="placard">
+          <span class="cat">風景画</span>
+          <div class="t">波・一</div>
+          <div class="sub">Procreate</div>
+        </figcaption>
+      </figure>
+
+      <figure class="piece wide"
+        data-cat="landscape" data-catja="風景画" data-med="procreate"
+        data-year="" data-img="images/work-50.jpg" data-more=""
+        data-title="波・二" data-sub="風景画　／　Procreate"
+        data-desc="">
+        <div class="frame"><div class="mat"><div class="art"><span class="ph">波・二</span></div></div></div>
+        <figcaption class="placard">
+          <span class="cat">風景画</span>
+          <div class="t">波・二</div>
+          <div class="sub">Procreate</div>
+        </figcaption>
+      </figure>
+
+      <figure class="piece wide"
+        data-cat="landscape" data-catja="風景画" data-med="procreate"
+        data-year="" data-img="images/work-51.jpg" data-more=""
+        data-title="星夜" data-sub="風景画　／　Procreate"
+        data-desc="">
+        <div class="frame"><div class="mat"><div class="art"><span class="ph">星夜</span></div></div></div>
+        <figcaption class="placard">
+          <span class="cat">風景画</span>
+          <div class="t">星夜</div>
+          <div class="sub">Procreate</div>
+        </figcaption>
+      </figure>
+
+      <figure class="piece"
+        data-cat="animal" data-catja="動物" data-med="procreate"
+        data-year="" data-img="images/work-52.jpg" data-more=""
+        data-title="獅子" data-sub="動物　／　Procreate"
+        data-desc="">
+        <div class="frame"><div class="mat"><div class="art"><span class="ph">獅子</span></div></div></div>
+        <figcaption class="placard">
+          <span class="cat">動物</span>
+          <div class="t">獅子</div>
+          <div class="sub">Procreate</div>
         </figcaption>
       </figure>
     </div>
@@ -994,6 +1595,10 @@ pieces.forEach(fig=>{
     if(fig.dataset.more) fig.dataset.more.split(",").map(s=>s.trim()).filter(Boolean).forEach(u=>imgs.push(u));
 
     lbArt.style.backgroundImage = imgs.length ? "url('"+imgs[0]+"')" : getComputedStyle(art).backgroundImage;
+    // 実画像は全体を表示（切り取らない）
+    lbArt.style.backgroundSize = imgs.length ? "contain" : "cover";
+    lbArt.style.backgroundRepeat = "no-repeat";
+    lbArt.style.backgroundColor = imgs.length ? "var(--washi)" : "#d9cfba";
     lbArt.style.aspectRatio =
       fig.classList.contains("tall") ? "3/5" :
       fig.classList.contains("wide") ? "5/4" : "4/5";
