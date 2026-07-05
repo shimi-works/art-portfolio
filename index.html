@@ -5,6 +5,21 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>片泪 katanami ― 作品集</title>
 <link rel="icon" type="image/svg+xml" href="images/katanami-icon.svg">
+<meta name="description" content="片泪（katanami）の作品集。人物画・風景画・デザインを、静かな展示室のように。">
+<meta name="theme-color" content="#c6b795">
+<!-- ▼ SNS（Xなど）でリンクを貼ったときの見え方（OGP）。
+     公開URLが変わったら og:url / og:image のアドレスも合わせて変えてください。
+     og:image は 1200×630px の画像（images/ogp.png）を用意すると綺麗に出ます。 -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="片泪 katanami">
+<meta property="og:title" content="片泪 katanami ― 作品集">
+<meta property="og:description" content="人物画・風景画・デザインを、静かな展示室のように。">
+<meta property="og:url" content="https://shimi-works.github.io/art-portfolio/">
+<meta property="og:image" content="https://shimi-works.github.io/art-portfolio/images/ogp.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="片泪 katanami ― 作品集">
+<meta name="twitter:description" content="人物画・風景画・デザインを、静かな展示室のように。">
+<meta name="twitter:image" content="https://shimi-works.github.io/art-portfolio/images/ogp.png">
 <style>
 /* =========================================================================
    絵のポートフォリオ ― 「和・土壁の空間」
@@ -430,24 +445,156 @@ footer{
   .profile-text p, .profile-text dl{ text-align:left; }
   .profile-text dt{ width:4.5em; }
 }
+@media (max-width:640px){
+  .news-item{ flex-direction:column; gap:4px; }
+  .news-item .date{ width:auto; }
+  .header-right{ gap:14px; }
+}
 @media (prefers-reduced-motion:reduce){
   *{ animation:none !important; transition:none !important; }
   figure.piece{ opacity:1; transform:none; }
 }
+
+/* ============================================ 追加機能まわり ============ */
+
+/* 右側（ナビ＋夜モード切替） */
+.header-right{ display:flex; align-items:center; gap:clamp(16px,3vw,30px); }
+.theme-toggle{
+  background:none; border:1px solid var(--line); color:var(--sumi-soft);
+  width:34px; height:34px; border-radius:50%; cursor:pointer;
+  font-size:14px; line-height:1; display:flex; align-items:center; justify-content:center;
+  transition:color .4s, border-color .4s, transform .5s;
+}
+.theme-toggle:hover{ color:var(--sumi); border-color:var(--bengara); transform:rotate(20deg); }
+
+/* 並び替え */
+.sort{
+  display:flex; justify-content:center; align-items:center; gap:10px;
+  margin:-10px auto clamp(34px,5vw,50px);
+}
+.sort .lbl{ font-size:10.5px; letter-spacing:.3em; color:var(--bengara); }
+.sort button{
+  background:none; border:none; cursor:pointer; font-family:var(--serif);
+  color:var(--sumi-soft); font-size:13.5px; letter-spacing:.14em; padding:4px 4px;
+  position:relative; transition:color .4s;
+}
+.sort button:hover{ color:var(--sumi); }
+.sort button.active{ color:var(--sumi); }
+.sort button.active::after{
+  content:""; position:absolute; left:0; right:0; bottom:-1px; height:1px; background:var(--shu);
+}
+.sort .sep{ color:var(--line); font-size:12px; }
+
+/* 遅延読み込み（画像が近づいたら差し込む） */
+.art.loaded .ph{ display:none; }
+.art.loaded{ background-color:transparent; }
+
+/* お知らせ / News */
+.news{ padding:clamp(64px,9vw,110px) 0; border-top:1px solid var(--line); }
+.news.hidden{ display:none; }
+.news-list{ max-width:720px; margin:0 auto; }
+.news-item{
+  display:flex; gap:clamp(16px,4vw,40px); align-items:baseline;
+  padding:18px 6px; border-bottom:1px solid var(--line);
+}
+.news-item:first-child{ border-top:1px solid var(--line); }
+.news-item .date{
+  flex:none; width:7.5em; color:var(--bengara);
+  font-size:13px; letter-spacing:.14em;
+}
+.news-item .txt{ color:var(--sumi-soft); font-size:15px; letter-spacing:.04em; }
+
+/* 拡大表示の複数画像サムネ */
+.lb-thumbs{ display:flex; gap:10px; justify-content:center; flex-wrap:wrap; }
+.lb-thumbs:empty{ display:none; }
+.lb-thumb{
+  width:54px; height:54px; border-radius:2px; cursor:pointer;
+  background-size:cover; background-position:center;
+  opacity:.45; border:1px solid rgba(240,232,215,.3);
+  transition:opacity .3s, transform .3s, border-color .3s;
+}
+.lb-thumb:hover{ opacity:.8; }
+.lb-thumb.active{ opacity:1; border-color:var(--washi); transform:translateY(-2px); }
+
+/* ============================================ 夜の展示室モード ========= */
+html.night{
+  --tsuchi:#17150f; --tsuchi-dark:#6f6349;
+  --washi:#efe7d4; --washi-warm:#f5eedc;
+  --sumi:#ece3d0; --sumi-soft:#b6ab92;
+  --bengara:#d3765f; --shu:#d1563f;
+  --line:rgba(236,227,208,.16);
+}
+html.night body{
+  background-color:#17150f;
+  background-image:
+    radial-gradient(120% 80% at 50% -12%, rgba(84,68,44,.45), transparent 55%),
+    radial-gradient(90% 75% at 50% 125%, rgba(0,0,0,.55), transparent 60%),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");
+}
+html.night header{ background:linear-gradient(to bottom, rgba(23,21,15,.94), rgba(23,21,15,0)); }
+html.night .profile{ background:linear-gradient(rgba(255,255,255,.03), rgba(255,255,255,.03)); }
+html.night .contact-links a{ background:rgba(255,255,255,.04); }
+html.night .portrait{ border-color:#efe7d4; }
+html.night figure.piece::before{
+  background:radial-gradient(60% 55% at 50% 0%, rgba(255,240,210,.35), transparent 70%);
+}
+
+/* ============================================ 入館の演出（ふすま） ===== */
+#entrance{ position:fixed; inset:0; z-index:200; display:flex; }
+#entrance.done{ display:none; }
+#entrance .panel{
+  flex:1 1 50%; position:relative;
+  background-color:#c6b795;
+  background-image:
+    radial-gradient(120% 140% at 50% 0%, rgba(255,251,236,.5), transparent 60%),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.06'/%3E%3C/svg%3E");
+  transition:transform 1.15s cubic-bezier(.76,0,.24,1);
+  will-change:transform;
+}
+#entrance .panel.left{ box-shadow:inset -1px 0 0 rgba(40,30,18,.18); }
+#entrance .panel.right{ box-shadow:inset 1px 0 0 rgba(255,251,236,.35); }
+#entrance .center{
+  position:absolute; inset:0; z-index:1;
+  display:flex; flex-direction:column; align-items:center; justify-content:center; gap:14px;
+  transition:opacity .7s ease;
+}
+#entrance .center img{ width:64px; height:64px; }
+#entrance .center .nm{
+  font-size:clamp(24px,4vw,32px); letter-spacing:.4em; padding-left:.4em; color:var(--sumi);
+}
+#entrance .center .en{ font-size:10px; letter-spacing:.5em; color:var(--bengara); text-transform:uppercase; }
+#entrance.open .center{ opacity:0; }
+#entrance.open .panel.left{ transform:translateX(-100%); }
+#entrance.open .panel.right{ transform:translateX(100%); }
 </style>
 </head>
 <body>
+
+<!-- 入館の演出（ふすまが開く）。触らなくてOK -->
+<div id="entrance">
+  <div class="panel left"></div>
+  <div class="center">
+    <img src="images/katanami-icon.svg" alt="">
+    <div class="nm">片泪</div>
+    <div class="en">katanami</div>
+  </div>
+  <div class="panel right"></div>
+</div>
 
 <header>
   <div class="brand">
     <img class="brand-mark" src="images/katanami-icon.svg" alt="片泪 ロゴ">
     片泪<span class="en">katanami</span>
   </div>
-  <nav>
-    <a href="#gallery">展示</a>
-    <a href="#profile">栞</a>
-    <a href="#contact">連絡</a>
-  </nav>
+  <div class="header-right">
+    <nav>
+      <a href="#gallery">展示</a>
+      <a href="#news">報せ</a>
+      <a href="#profile">栞</a>
+      <a href="#contact">連絡</a>
+    </nav>
+    <button class="theme-toggle" id="themeToggle" aria-label="夜の展示室モード切替" title="夜の展示室モード">☾</button>
+  </div>
 </header>
 
 <!-- ============================================================ 表紙 / hero -->
@@ -506,6 +653,13 @@ footer{
       </div>
     </div>
 
+    <div class="sort" id="sort">
+      <span class="lbl">並び</span>
+      <button data-sort="new" class="active">新しい順</button>
+      <span class="sep">｜</span>
+      <button data-sort="old">古い順</button>
+    </div>
+
     <p class="empty-note" id="emptyNote">この組み合わせの作品は、まだありません。</p>
 
     <div class="grid" id="grid">
@@ -513,9 +667,15 @@ footer{
            data-cat … portrait(人物画) / landscape(風景画) / design(デザイン)
            data-catja … 札に出す日本語のジャンル名
            data-med … procreate / pencil / charcoal（画材フィルター用）
+           data-year … 制作年（並び替えに使用）
+           data-img … 作品画像のパス 例) data-img="images/sakuhin-01.jpg"
+                       （空のままだと「作品○」のプレースホルダー表示）
+           data-more … 追加の画像（部分アップなど）をカンマ区切りで
+                        例) data-more="images/01-detail.jpg,images/01-sketch.jpg"
            data-* の内容がクリック時の拡大表示にも反映されます。          -->
       <figure class="piece"
         data-cat="portrait" data-catja="人物画" data-med="procreate"
+        data-year="2024" data-img="" data-more=""
         data-title="面影" data-sub="人物画　／　Procreate　／　2024"
         data-desc="［作品の解説やエピソードをここに。モチーフに込めた想いなど。］">
         <div class="frame"><div class="mat"><div class="art"><span class="ph">作品 一</span></div></div></div>
@@ -528,6 +688,7 @@ footer{
 
       <figure class="piece tall"
         data-cat="portrait" data-catja="人物画" data-med="charcoal"
+        data-year="2024" data-img="" data-more=""
         data-title="まなざし" data-sub="人物画　／　スケッチブック・木炭　／　2024"
         data-desc="［木炭のデッサン。ここに解説を。］">
         <div class="frame"><div class="mat"><div class="art"><span class="ph">作品 二</span></div></div></div>
@@ -540,6 +701,7 @@ footer{
 
       <figure class="piece"
         data-cat="landscape" data-catja="風景画" data-med="pencil"
+        data-year="2023" data-img="" data-more=""
         data-title="路地の記憶" data-sub="風景画　／　スケッチブック・鉛筆　／　2023"
         data-desc="［鉛筆のスケッチ。ここに解説を。］">
         <div class="frame"><div class="mat"><div class="art"><span class="ph">作品 三</span></div></div></div>
@@ -552,6 +714,7 @@ footer{
 
       <figure class="piece wide"
         data-cat="landscape" data-catja="風景画" data-med="procreate"
+        data-year="2023" data-img="" data-more=""
         data-title="遠い山なみ" data-sub="風景画　／　Procreate　／　2023"
         data-desc="［横長の風景。ここに解説を。］">
         <div class="frame"><div class="mat"><div class="art"><span class="ph">作品 四</span></div></div></div>
@@ -564,6 +727,7 @@ footer{
 
       <figure class="piece"
         data-cat="design" data-catja="デザイン" data-med="procreate"
+        data-year="2022" data-img="" data-more=""
         data-title="紋様の試み" data-sub="デザイン　／　Procreate　／　2022"
         data-desc="［デザイン作品。コンセプトや用途など。］">
         <div class="frame"><div class="mat"><div class="art"><span class="ph">作品 五</span></div></div></div>
@@ -576,6 +740,7 @@ footer{
 
       <figure class="piece tall"
         data-cat="design" data-catja="デザイン" data-med="pencil"
+        data-year="2022" data-img="" data-more=""
         data-title="名もなき形" data-sub="デザイン　／　スケッチブック・鉛筆　／　2022"
         data-desc="［アイデアスケッチ。ここに解説を。］">
         <div class="frame"><div class="mat"><div class="art"><span class="ph">作品 六</span></div></div></div>
@@ -586,6 +751,17 @@ footer{
         </figcaption>
       </figure>
     </div>
+  </div>
+</section>
+
+<!-- ========================================================= 報せ / news -->
+<section class="news" id="news">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="kanji">報せ</span>
+      <span class="en">News</span>
+    </div>
+    <div class="news-list" id="newsList"></div>
   </div>
 </section>
 
@@ -647,6 +823,7 @@ footer{
   <button class="lb-close" id="lbClose" aria-label="閉じる">×</button>
   <div class="lb-inner">
     <div class="lb-frame"><div class="lb-mat"><div class="lb-art" id="lbArt"></div></div></div>
+    <div class="lb-thumbs" id="lbThumbs"></div>
     <div class="lb-cap">
       <div class="lb-cat" id="lbCat"></div>
       <div class="t" id="lbTitle"></div>
@@ -675,14 +852,23 @@ const PROFILE = {
   // プロフィールの一覧
   location:   "新潟（上越）・宮城（仙台）",          // 拠点
   media:      "Procreate ／ 鉛筆 ／ 木炭",       // 画材
-  exhibition: "2025 「東北大学学友会前期展・後期展」／ せんだいメディアテーク］",  // 個展
+  exhibition: "2025 「東北大学学友会前期展・後期展」／ せんだいメディアテーク",  // 個展
 
   // 連絡先（アカウントを取ったらここを書き換える）
-  gmail:      "example@gmail.com",               // Gmailアドレス
-  xHandle:    "@example",                        // Xの表示名（@つき）
-  xUrl:       "https://x.com/example",           // XのURL
+  gmail:      "katanamileft@gmail.com",          // Gmailアドレス
+  xHandle:    "@katanamileft",                   // Xの表示名（@つき）
+  xUrl:       "https://x.com/katanamileft",      // XのURL
 
 };
+
+/* お知らせ（新着・個展情報など）。
+   { date:"日付", text:"内容" } を , 区切りで並べる。
+   全部消して [] にすると「報せ」欄ごと非表示になります。 */
+const NEWS = [
+  { date:"2025 後期", text:"「東北大学学友会後期展」に出展しました。（せんだいメディアテーク）" },
+  { date:"2025 前期", text:"「東北大学学友会前期展」に出展しました。" },
+];
+
 /* ── ここから下は仕組みです。触らなくてOK ── */
 (function applyProfile(){
   const set = (id, text)=>{ const el=document.getElementById(id); if(el) el.textContent=text; };
@@ -696,6 +882,22 @@ const PROFILE = {
   set("cfgXVal",       PROFILE.xHandle);
   const g = document.getElementById("cfgGmailLink"); if(g) g.href = "mailto:" + PROFILE.gmail;
   const x = document.getElementById("cfgXLink");     if(x) x.href = PROFILE.xUrl;
+
+  // お知らせを描画（無ければ非表示）
+  const list = document.getElementById("newsList");
+  const sec  = document.getElementById("news");
+  if(Array.isArray(NEWS) && NEWS.length && list){
+    list.innerHTML = NEWS.map(n=>{
+      const d = document.createElement("div"); d.className="news-item";
+      const a = document.createElement("span"); a.className="date"; a.textContent = n.date || "";
+      const b = document.createElement("span"); b.className="txt";  b.textContent = n.text || "";
+      d.appendChild(a); d.appendChild(b); return d.outerHTML;
+    }).join("");
+  }else{
+    if(sec) sec.classList.add("hidden");
+    const navNews = document.querySelector('nav a[href="#news"]');
+    if(navNews) navNews.style.display = "none";
+  }
 })();
 
 /* ---- スクロールで作品をふわりと表示 ---- */
@@ -743,21 +945,76 @@ function applyFilters(){
   emptyNote.classList.toggle("show", shown===0);
 }
 
+/* ---- 画像の遅延読み込み（近づいたら差し込む＝作品が増えても軽い） ---- */
+const artLazy = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{
+    if(!e.isIntersecting) return;
+    const fig = e.target, url = fig.dataset.img, art = fig.querySelector(".art");
+    if(url && art){
+      const im = new Image();
+      im.onload = ()=>{ art.style.backgroundImage = "url('"+url+"')"; art.classList.add("loaded"); };
+      im.src = url;
+    }
+    artLazy.unobserve(fig);
+  });
+},{ rootMargin:"300px" });
+pieces.forEach(f=>{ if(f.dataset.img) artLazy.observe(f); });
+
+/* ---- 並び替え（制作年） ---- */
+const grid = document.getElementById("grid");
+document.querySelectorAll(".sort button").forEach(btn=>{
+  btn.addEventListener("click", ()=>{
+    document.querySelectorAll(".sort button").forEach(b=>b.classList.remove("active"));
+    btn.classList.add("active");
+    const dir = btn.dataset.sort;
+    Array.from(grid.querySelectorAll("figure.piece"))
+      .sort((a,b)=>{
+        const ya=+a.dataset.year||0, yb=+b.dataset.year||0;
+        return dir==="new" ? yb-ya : ya-yb;
+      })
+      .forEach(el=>grid.appendChild(el));
+  });
+});
+
 /* ---- 作品クリックで拡大（美術館の解説板つき） ---- */
-const lb    = document.getElementById("lightbox");
-const lbArt = document.getElementById("lbArt");
-const lbCat = document.getElementById("lbCat");
-const lbT   = document.getElementById("lbTitle");
-const lbS   = document.getElementById("lbSub");
-const lbD   = document.getElementById("lbDesc");
+const lb      = document.getElementById("lightbox");
+const lbArt   = document.getElementById("lbArt");
+const lbThumbs= document.getElementById("lbThumbs");
+const lbCat   = document.getElementById("lbCat");
+const lbT     = document.getElementById("lbTitle");
+const lbS     = document.getElementById("lbSub");
+const lbD     = document.getElementById("lbDesc");
 
 pieces.forEach(fig=>{
   fig.addEventListener("click", ()=>{
     const art = fig.querySelector(".art");
-    lbArt.style.backgroundImage = getComputedStyle(art).backgroundImage;
+    // この作品の画像一覧（メイン＋部分アップなど）
+    const imgs = [];
+    if(fig.dataset.img) imgs.push(fig.dataset.img);
+    if(fig.dataset.more) fig.dataset.more.split(",").map(s=>s.trim()).filter(Boolean).forEach(u=>imgs.push(u));
+
+    lbArt.style.backgroundImage = imgs.length ? "url('"+imgs[0]+"')" : getComputedStyle(art).backgroundImage;
     lbArt.style.aspectRatio =
       fig.classList.contains("tall") ? "3/5" :
       fig.classList.contains("wide") ? "5/4" : "4/5";
+
+    // サムネ（画像が2枚以上のときだけ表示）
+    lbThumbs.innerHTML = "";
+    if(imgs.length > 1){
+      imgs.forEach((u,idx)=>{
+        const t = document.createElement("div");
+        t.className = "lb-thumb" + (idx===0 ? " active" : "");
+        t.style.backgroundImage = "url('"+u+"')";
+        t.addEventListener("click", ev=>{
+          ev.stopPropagation();
+          lbArt.style.backgroundImage = "url('"+u+"')";
+          lbThumbs.querySelectorAll(".lb-thumb").forEach(x=>x.classList.remove("active"));
+          t.classList.add("active");
+        });
+        lbThumbs.appendChild(t);
+      });
+    }
+
     lbCat.textContent = fig.dataset.catja || "";
     lbT.textContent   = fig.dataset.title || "";
     lbS.textContent   = fig.dataset.sub   || "";
@@ -770,6 +1027,33 @@ function closeLB(){ lb.classList.remove("open"); document.body.style.overflow=""
 document.getElementById("lbClose").addEventListener("click", closeLB);
 lb.addEventListener("click", e=>{ if(e.target===lb) closeLB(); });
 document.addEventListener("keydown", e=>{ if(e.key==="Escape") closeLB(); });
+
+/* ---- 夜の展示室モード（切替を記憶） ---- */
+const root = document.documentElement;
+const themeBtn = document.getElementById("themeToggle");
+if(localStorage.getItem("katanami-theme") === "night"){
+  root.classList.add("night"); themeBtn.textContent = "☀";
+}
+themeBtn.addEventListener("click", ()=>{
+  const night = root.classList.toggle("night");
+  themeBtn.textContent = night ? "☀" : "☾";
+  localStorage.setItem("katanami-theme", night ? "night" : "day");
+});
+
+/* ---- 入館の演出（ふすまが開く／1回の訪問につき一度だけ） ---- */
+(function entrance(){
+  const el = document.getElementById("entrance");
+  const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if(!el) return;
+  if(reduce || sessionStorage.getItem("katanami-entered")){ el.classList.add("done"); return; }
+  document.body.style.overflow = "hidden";
+  setTimeout(()=>{ el.classList.add("open"); }, 750);
+  setTimeout(()=>{
+    el.classList.add("done");
+    document.body.style.overflow = "";
+    sessionStorage.setItem("katanami-entered", "1");
+  }, 2050);
+})();
 </script>
 </body>
 </html>
